@@ -82,7 +82,7 @@ export default function Home() {
       <Pad3 />
       <Logo src={'/underlive-logo.png'} alt="logo" />
       <Chattab></Chattab>
-      <Pad2 />a
+      <Pad2 />
       <Button />
     </Main>
     </div>

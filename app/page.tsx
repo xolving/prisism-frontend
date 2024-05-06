@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Button from "./components/Button";
 
@@ -60,6 +60,13 @@ const Logo = styled.img`
 
 export default function Home() {
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chatHistory]);
 
   const handleSendMessage = (message: string) => {
     setChatHistory(prevHistory => [...prevHistory, { message }]);
@@ -75,6 +82,7 @@ export default function Home() {
           {chatHistory.map((chat, index) => (
             <p key={index}>{chat.message}</p>
           ))}
+          <div ref={chatEndRef} />
         </Chattab>
         <Pad2 />
         <Button onSendMessage={handleSendMessage} />

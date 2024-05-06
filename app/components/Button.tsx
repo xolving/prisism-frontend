@@ -64,12 +64,6 @@ export default function Button({ onSendMessage }: { onSendMessage: any }) {
       }
     };
   
-    const scrollToBottom = () => {
-      if (chatRef.current) {
-        chatRef.current.scrollTop = chatRef.current.scrollHeight;
-      }
-    };
-  
     return (
       <div>
         {isInput ? (

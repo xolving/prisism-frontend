@@ -1,9 +1,11 @@
 'use client'
 
-import Image from "next/image";
-import React, { useState, useEffect, useRef} from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
-import logo from './underlive-logo.png'
+
+interface ChatHistory {
+  message: string;
+}
 
 const Main = styled.div`
   width:50vw;
@@ -95,7 +97,7 @@ const Sendbutton = styled.button`
   border-radius: 10px;
 `
 
-function Button({ onSendMessage }) {
+function Button({ onSendMessage }: { onSendMessage: any }) {
   const [isInput, setIsInput] = useState(false);
   const [isValue, setIsValue] = useState('');
   const chatRef = useRef(null);
@@ -112,7 +114,7 @@ function Button({ onSendMessage }) {
     }
   }
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: any) => {
     if (e.key === 'Enter') {
       sendToggle();
     }
@@ -143,9 +145,9 @@ function Button({ onSendMessage }) {
 }
 
 export default function Home() {
-  const [chatHistory, setChatHistory] = useState([]);
+  const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
 
-  const handleSendMessage = (message) => {
+  const handleSendMessage = (message: any) => {
     setChatHistory(prevHistory => [...prevHistory, message]);
   };
 
@@ -156,8 +158,8 @@ export default function Home() {
         <Pad3 />
         <Logo src={'/underlive-logo.png'} alt="logo" />
         <Chattab>
-          {chatHistory.map((message, index) => (
-            <p key={index}>{message}</p>
+          {chatHistory.map((chat, index) => (
+            <p key={index}>{chat.message}</p>
           ))}
         </Chattab>
         <Pad2 />

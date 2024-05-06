@@ -54,19 +54,12 @@ export default function Button({ onSendMessage }: { onSendMessage: any }) {
       if (isValue.trim() !== "") {
         onSendMessage(isValue);
         setIsValue('');
-        scrollToBottom();
       }
     }
   
     const handleKeyPress = (e: any) => {
       if (e.key === 'Enter') {
         sendToggle();
-      }
-    };
-  
-    const scrollToBottom = () => {
-      if (chatRef.current) {
-        chatRef.current.scrollTop = chatRef.current.scrollHeight;
       }
     };
   

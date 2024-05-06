@@ -19,7 +19,7 @@ export const Chatinput = styled.input`
   width: 35vw;
   height: 5vh;
   background-color: #2A2A2A;
-  text-align: center;
+  text-align: left;
   margin-left: 65px;
   margin-top:20px;
   display: block;
@@ -43,17 +43,18 @@ export const Sendbutton = styled.button`
 
 export default function Button({ onSendMessage }: { onSendMessage: any }) {
     const [isInput, setIsInput] = useState(false);
-    const [isValue, setIsValue] = useState('');
-    const chatRef = useRef(null);
+    const [value, setValue] = useState('');
+    const chatRef = useRef<HTMLUListElement>(null);
   
     const handleInputToggle = () => {
       setIsInput(true);
     };
   
     const sendToggle = () => {
-      if (isValue.trim() !== "") {
-        onSendMessage(isValue);
-        setIsValue('');
+      if (value.trim() !== "") {
+        onSendMessage(value);
+        setValue('');
+        scrollToBottom();
       }
     }
   
@@ -68,9 +69,9 @@ export default function Button({ onSendMessage }: { onSendMessage: any }) {
         {isInput ? (
           <div>
             <Chatinput
-              value={isValue} 
-              onChange={(e) => setIsValue(e.target.value)} 
-              onKeyPress={handleKeyPress} 
+              value={value} 
+              onChange={(e) => setValue(e.target.value)} 
+              onKeyDown={handleKeyPress}
             />
             <Sendbutton onClick={sendToggle}>보내기</Sendbutton>
           </div>

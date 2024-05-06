@@ -61,8 +61,8 @@ const Logo = styled.img`
 export default function Home() {
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
 
-  const handleSendMessage = (message: any) => {
-    setChatHistory(prevHistory => [...prevHistory, message]);
+  const handleSendMessage = (message: string) => {
+    setChatHistory(prevHistory => [...prevHistory, { message }]);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 export const Chatsend = styled.button`
@@ -42,41 +42,40 @@ export const Sendbutton = styled.button`
 `
 
 export default function Button({ onSendMessage }: { onSendMessage: any }) {
-    const [isInput, setIsInput] = useState(false);
-    const [Value, setValue] = useState('');
-    const chatRef = useRef(HTMLUListElement);
-  
-    const handleInputToggle = () => {
-      setIsInput(true);
-    };
-  
-    const sendToggle = () => {
-      if (Value.trim() !== "") {
-        onSendMessage(Value);
-        setValue('');
-      }
+  const [isInput, setIsInput] = useState(false);
+  const [value, setValue] = useState('');
+
+  const handleInputToggle = () => {
+    setIsInput(true);
+  };
+
+  const sendToggle = () => {
+    if (value.trim() !== "") {
+      onSendMessage(value);
+      setValue('');
     }
-  
-    const handleKeyPress = (e: any) => {
-      if (e.key === 'Enter') {
-        sendToggle();
-      }
-    };
-  
-    return (
-      <div>
-        {isInput ? (
-          <div>
-            <Chatinput
-              value={Value} 
-              onChange={(e) => setValue(e.target.value)} 
-              onKeyDown={handleKeyPress} 
-            />
-            <Sendbutton onClick={sendToggle}>보내기</Sendbutton>
-          </div>
-        ) : (
-          <Chatsend onClick={handleInputToggle}>채팅 시작하기</Chatsend>
-        )}
-      </div>
-    );
   }
+
+  const handleKeyPress = (e: any) => {
+    if (e.key === 'Enter') {
+      sendToggle();
+    }
+  };
+
+  return (
+    <div>
+      {isInput ? (
+        <div>
+          <Chatinput
+            value={value} 
+            onChange={(e) => setValue(e.target.value)} 
+            onKeyDown={handleKeyPress} 
+          />
+          <Sendbutton onClick={sendToggle}>보내기</Sendbutton>
+        </div>
+      ) : (
+        <Chatsend onClick={handleInputToggle}>채팅 시작하기</Chatsend>
+      )}
+    </div>
+  );
+}

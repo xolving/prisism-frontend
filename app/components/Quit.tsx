@@ -15,7 +15,7 @@ const StyledStartButton = styled.button`
   height: 5vh;
   background-color: #2A2A2A;
   text-align: center;
-  margin: 20px auto 0; /* Centered horizontally with margin */
+  margin: 20px auto 0;
   display: block;
   vertical-align: middle;
   border: solid #434242;

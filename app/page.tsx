@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Button from "./components/Button";
 import Quit from "./components/Quit";
 
-
 interface ChatHistory {
   message: string;
 }
@@ -18,9 +17,9 @@ const Main = styled.div`
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
-  display: block;
-  vertical-align: middle;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
   border-radius: 10px;
 `;
@@ -30,14 +29,11 @@ const Chattab = styled.div`
   height: 50vh;
   background-color: #2a2a2a;
   text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: auto;
   border: solid #434242;
   border-radius: 10px;
   padding: 20px;
   overflow-y: auto;
+  margin-top: 1vh;
 `;
 
 const Pad = styled.div`
@@ -52,16 +48,22 @@ const Pad3 = styled.div`
   height: 10px;
 `;
 
+const Header = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 4vw 0 4vw;
+`;
+
 const Logo = styled.img`
   width: 10vw;
   height: 5vh;
-  margin-left: 4vw;
-  margin-bottom: -5vh;
-  margin-top: 1vh;
 `;
 
-export default function Home() {
+const Home = () => {
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
+  const [isChatting, setIsChatting] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -76,12 +78,11 @@ export default function Home() {
 
   const handleQuit = () => {
     setChatHistory([]);
-    
-    
+    setIsChatting(false); // 채팅 종료 시 채팅 중이 아님으로 설정
   };
 
   const handleChatStart = () => {
-    
+    setIsChatting(true); // 채팅 시작 시 채팅 중으로 설정
   };
 
   return (
@@ -89,8 +90,10 @@ export default function Home() {
       <Pad />
       <Main>
         <Pad3 />
-        <Logo src={"/underlive-logo.png"} alt="logo" />
-        <Quit onQuit={handleQuit} onChatStart={handleChatStart} />
+        <Header>
+          <Logo src={"/underlive-logo.png"} alt="logo" />
+          {isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
+        </Header>
         <Chattab>
           {chatHistory.map((chat, index) => (
             <p key={index}>{chat.message}</p>
@@ -98,8 +101,11 @@ export default function Home() {
           <div ref={chatEndRef} />
         </Chattab>
         <Pad2 />
-        <Button onSendMessage={handleSendMessage} />
+        {isChatting && <Button onSendMessage={handleSendMessage} />}
+        {!isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
       </Main>
     </div>
   );
-}
+};
+
+export default Home;

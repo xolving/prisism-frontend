@@ -1,30 +1,59 @@
 import React from "react";
 import styled from "styled-components";
 
-const Quitbutton= styled.button`
+const StyledQuitButton = styled.button`
   width: 6vw;
   height: 5vh;
   background-color: #2A2A2A;
   text-align: center;
-  margin-left: 663px;
+  border: solid #434242;
+  border-radius: 10px;
+`;
+
+const StyledStartButton = styled.button`
+  width: 42vw;
+  height: 5vh;
+  background-color: #2A2A2A;
+  text-align: center;
+  margin: 20px auto 0; /* Centered horizontally with margin */
   display: block;
   vertical-align: middle;
   border: solid #434242;
   border-radius: 10px;
 `;
 
-const Quit = ({ onQuit, onChatStart }: { onQuit: () => void, onChatStart: () => void }) => {
-  const handleQuit = () => {
-    onQuit();
-    onChatStart();
-  };
+interface QuitButtonProps {
+  onClick: () => void;
+}
 
-  return(
+const QuitButton: React.FC<QuitButtonProps> = ({ onClick }) => {
+  return <StyledQuitButton onClick={onClick}>종료하기</StyledQuitButton>;
+};
+
+interface StartButtonProps {
+  onClick: () => void;
+}
+
+const StartButton: React.FC<StartButtonProps> = ({ onClick }) => {
+  return <StyledStartButton onClick={onClick}>채팅 시작하기</StyledStartButton>;
+};
+
+interface Props {
+  onQuit: () => void;
+  isChatting: boolean;
+  onStartChat: () => void;
+}
+
+const Quit = ({ onQuit, isChatting, onStartChat }: Props) => {
+  return (
     <div>
-        <Quitbutton onClick={handleQuit}>종료하기</Quitbutton>
+      {isChatting ? (
+        <QuitButton onClick={onQuit} />
+      ) : (
+        <StartButton onClick={onStartChat} />
+      )}
     </div>
-
-  ); 
+  );
 };
 
 export default Quit;

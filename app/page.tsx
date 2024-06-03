@@ -78,11 +78,11 @@ const Home = () => {
 
   const handleQuit = () => {
     setChatHistory([]);
-    setIsChatting(false); // 채팅 종료 시 채팅 중이 아님으로 설정
+    setIsChatting(false);
   };
 
   const handleChatStart = () => {
-    setIsChatting(true); // 채팅 시작 시 채팅 중으로 설정
+    setIsChatting(true);
   };
 
   return (

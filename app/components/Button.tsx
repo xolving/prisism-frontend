@@ -1,20 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Chatsend = styled.button`
-  width: 42vw;
-  height: 5vh;
-  background-color: #2A2A2A;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  display: block;
-  vertical-align: middle;
-  border: solid #434242;
-  border-radius: 10px;
-`;
-
 const Chatinput = styled.input`
   width: 35vw;
   height: 5vh;
@@ -39,10 +25,6 @@ const Sendbutton = styled.button`
   border: solid #434242;
   border-radius: 10px;
 `;
-
-const between = styled.div`
-  margin-left: 10px;
-`
 
 const Button = ({ onSendMessage }: { onSendMessage: any }) => {
   const [value, setValue] = useState('');

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Button from "./components/Button";
 import Quit from "./components/Quit";
@@ -63,27 +63,45 @@ const Logo = styled.img`
 
 const Home = () => {
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
-  const [isChatting, setIsChatting] = useState(false);
+  const [isChatting, setChatting] = useState(false);
+  const [socket, setSocket] = useState<WebSocket | null>(null)
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+
+      socket?.addEventListener('message', (ev: MessageEvent<any>) => {
+        setChatHistory((prevHistory) => [...prevHistory, { message: "상대방: " + JSON.parse(ev.data).message }]);
+      })
     }
-  }, [chatHistory]);
+  }, [socket]);
 
   const handleSendMessage = (message: string) => {
-    setChatHistory((prevHistory) => [...prevHistory, { message }]);
+    setChatHistory((prevHistory) => [...prevHistory, { message: "나: " + message }]);
+    socket?.send(JSON.stringify({ message: message }))
   };
 
   const handleQuit = () => {
-    setChatHistory([]);
-    setIsChatting(false);
+    setChatHistory([])
+    setChatting(false)
+    socket?.close()
   };
 
-  const handleChatStart = () => {
-    setIsChatting(true);
+  const handleChatStart = async () => {
+    setChatting(true)
+    setChatHistory((prevHistory) => [...prevHistory, { message: "상대방을 기다리고 있습니다." }])
+    setSocket(new WebSocket("ws://localhost:8080/ws/chat"))
   };
+
+  socket?.addEventListener('close', () => {
+    setChatting(false)
+    socket?.close()
+  })
+
+  socket?.addEventListener('open', (ev: Event) => {
+    setChatHistory([])
+  })
 
   return (
     <div>

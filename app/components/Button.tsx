@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const Chatinput = styled.input`
@@ -28,6 +28,7 @@ const Sendbutton = styled.button`
 
 const Button = ({ onSendMessage }: { onSendMessage: any }) => {
   const [value, setValue] = useState('');
+  const [isComposing, setComposing] = useState(false);
 
   const sendToggle = () => {
     if (value.trim() !== "") {
@@ -37,8 +38,16 @@ const Button = ({ onSendMessage }: { onSendMessage: any }) => {
   };
 
   const handleKeyPress = (e: any) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !isComposing) {
       sendToggle();
+    }
+  };
+
+  const handleComposition = (e: any) => {
+    if (e.type === 'compositionstart') {
+      setComposing(true);
+    } else if (e.type === 'compositionend') {
+      setComposing(false);
     }
   };
 
@@ -48,6 +57,8 @@ const Button = ({ onSendMessage }: { onSendMessage: any }) => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyPress}
+        onCompositionStart={handleComposition}
+        onCompositionEnd={handleComposition}
       />
       <Sendbutton onClick={sendToggle}>보내기</Sendbutton>
     </div>

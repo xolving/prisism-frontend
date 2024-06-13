@@ -90,7 +90,7 @@ const Home = () => {
 
   const handleChatStart = async () => {
     setChatting(true)
-    setSocket(new WebSocket("ws://localhost:8080/ws/chat"))
+    setSocket(new WebSocket(process.env.SERVER_ADDRESS ?? ""))
   };
 
   socket?.addEventListener('close', () => {

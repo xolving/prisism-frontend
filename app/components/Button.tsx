@@ -6,8 +6,6 @@ const Chatinput = styled.input`
   height: 5vh;
   background-color: #2A2A2A;
   text-align: left;
-  margin-top: 20px;
-  display: block;
   vertical-align: middle;
   border: solid #434242;
   border-radius: 10px;
@@ -18,9 +16,6 @@ const Sendbutton = styled.button`
   height: 5vh;
   background-color: #2A2A2A;
   text-align: center;
-  margin-left: 600px;
-  margin-top: -47px;
-  display: block;
   vertical-align: middle;
   border: solid #434242;
   border-radius: 10px;
@@ -52,7 +47,7 @@ const Button = ({ onSendMessage }: { onSendMessage: any }) => {
   };
 
   return (
-    <div>
+    <div className="flex gap-x-5 mt-4">
       <Chatinput
         value={value}
         onChange={(e) => setValue(e.target.value)}

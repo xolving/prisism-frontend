@@ -27,7 +27,7 @@ interface QuitButtonProps {
 }
 
 const QuitButton: React.FC<QuitButtonProps> = ({ onClick }) => {
-  return <StyledQuitButton onClick={onClick}>종료하기</StyledQuitButton>;
+  return <StyledQuitButton onClick={onClick}>나가기</StyledQuitButton>;
 };
 
 interface StartButtonProps {

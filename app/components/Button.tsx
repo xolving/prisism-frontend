@@ -2,23 +2,15 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const Chatinput = styled.input`
-  width: 35vw;
+  margin: 10px;
   height: 5vh;
-  background-color: #2A2A2A;
+  background-color: #313131;
   text-align: left;
-  vertical-align: middle;
   border: solid #434242;
   border-radius: 10px;
-`;
-
-const Sendbutton = styled.button`
-  width: 6vw;
-  height: 5vh;
-  background-color: #2A2A2A;
-  text-align: center;
-  vertical-align: middle;
-  border: solid #434242;
-  border-radius: 10px;
+  margin-top: 1vh;
+  padding: 10px;
+  width: 90%;
 `;
 
 const Button = ({ onSendMessage }: { onSendMessage: any }) => {
@@ -47,16 +39,14 @@ const Button = ({ onSendMessage }: { onSendMessage: any }) => {
   };
 
   return (
-    <div className="flex gap-x-5 mt-4">
-      <Chatinput
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onKeyDown={handleKeyPress}
-        onCompositionStart={handleComposition}
-        onCompositionEnd={handleComposition}
-      />
-      <Sendbutton onClick={sendToggle}>보내기</Sendbutton>
-    </div>
+    <Chatinput
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onKeyDown={handleKeyPress}
+      onCompositionStart={handleComposition}
+      onCompositionEnd={handleComposition}
+      placeholder="채팅을 입력해주세요."
+    />
   );
 };
 

@@ -10,7 +10,7 @@ interface ChatHistory {
 }
 
 const Main = styled.div`
-  width: 50vw;
+  width: 58vw;
   height: 70vh;
   background-color: #2a2a2a;
   margin-left: auto;
@@ -25,35 +25,24 @@ const Main = styled.div`
 `;
 
 const Chattab = styled.div`
-  width: 42vw;
+  margin: 10px;
   height: 50vh;
-  background-color: #2a2a2a;
+  background-color: #313131;
   text-align: left;
   border: solid #434242;
   border-radius: 10px;
-  padding: 20px;
   overflow-y: auto;
   margin-top: 1vh;
-`;
-
-const Pad = styled.div`
-  height: 120px;
-`;
-
-const Pad2 = styled.div`
-  height: 10px;
-`;
-
-const Pad3 = styled.div`
-  height: 10px;
+  padding: 10px;
+  width: 90%;
 `;
 
 const Header = styled.div`
-  width: 100%;
+  padding-top: 20px;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 4vw 0 4vw;
 `;
 
 const Logo = styled.img`
@@ -90,7 +79,7 @@ const Home = () => {
 
   const handleChatStart = async () => {
     setChatting(true)
-    setSocket(new WebSocket(process.env.SERVER_ADDRESS ?? ""))
+    setSocket(new WebSocket("ws://localhost:8080/ws/chat"))
   };
 
   socket?.addEventListener('close', () => {
@@ -103,10 +92,8 @@ const Home = () => {
   })
 
   return (
-    <div>
-      <Pad />
-      <Main>
-        <Pad3 />
+    <div className="flex items-center justify-center h-screen">
+      <Main className="max-w-4xl">
         <Header>
           <Logo src={"/underlive-logo.png"} alt="logo" />
           {isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
@@ -117,7 +104,6 @@ const Home = () => {
           ))}
           <div ref={chatEndRef} />
         </Chattab>
-        <Pad2 />
         {isChatting && <Button onSendMessage={handleSendMessage} />}
         {!isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
       </Main>

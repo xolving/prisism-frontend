@@ -11,15 +11,15 @@ const StyledQuitButton = styled.button`
 `;
 
 const StyledStartButton = styled.button`
-  width: 42vw;
+  margin: 10px;
   height: 5vh;
-  background-color: #2A2A2A;
+  background-color: #313131;
   text-align: center;
-  margin: 20px auto 0;
-  display: block;
-  vertical-align: middle;
   border: solid #434242;
   border-radius: 10px;
+  margin-top: 1vh;
+  padding: 10px;
+  width: 90%;
 `;
 
 interface QuitButtonProps {
@@ -46,13 +46,13 @@ interface Props {
 
 const Quit = ({ onQuit, isChatting, onStartChat }: Props) => {
   return (
-    <div>
+    <>
       {isChatting ? (
         <QuitButton onClick={onQuit} />
       ) : (
         <StartButton onClick={onStartChat} />
       )}
-    </div>
+    </>
   );
 };
 

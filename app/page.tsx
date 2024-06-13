@@ -70,11 +70,11 @@ const Home = () => {
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
-
-      socket?.addEventListener('message', (ev: MessageEvent<any>) => {
-        setChatHistory((prevHistory) => [...prevHistory, { message: "상대방: " + JSON.parse(ev.data).message }]);
-      })
     }
+
+    socket?.addEventListener('message', (ev: MessageEvent<any>) => {
+      setChatHistory((prevHistory) => [...prevHistory, { message: JSON.parse(ev.data).status == undefined ? "상대방: " + JSON.parse(ev.data).message : JSON.parse(ev.data).status }]);
+    })
   }, [socket]);
 
   const handleSendMessage = (message: string) => {
@@ -83,14 +83,13 @@ const Home = () => {
   };
 
   const handleQuit = () => {
-    setChatHistory([])
+    setChatHistory((prevHistory) => [...prevHistory, { message: "채팅이 종료되었습니다." }]);
     setChatting(false)
     socket?.close()
   };
 
   const handleChatStart = async () => {
     setChatting(true)
-    setChatHistory((prevHistory) => [...prevHistory, { message: "상대방을 기다리고 있습니다." }])
     setSocket(new WebSocket("ws://localhost:8080/ws/chat"))
   };
 

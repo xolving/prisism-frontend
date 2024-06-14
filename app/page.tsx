@@ -7,6 +7,7 @@ import Quit from "./components/Quit";
 
 interface ChatHistory {
   message: string;
+  sender: string;
 }
 
 const Main = styled.div`
@@ -62,17 +63,32 @@ const Home = () => {
     }
 
     socket?.addEventListener('message', (ev: MessageEvent<any>) => {
-      setChatHistory((prevHistory) => [...prevHistory, { message: JSON.parse(ev.data).status == undefined ? "상대방: " + JSON.parse(ev.data).message : JSON.parse(ev.data).status }]);
-    })
+      setChatHistory((prevHistory) => [...prevHistory, JSON.parse(ev.data).status == undefined ? 
+        {
+          message: JSON.parse(ev.data).message,
+          sender: "상대방"
+        } 
+        : {
+          message: JSON.parse(ev.data).status,
+          sender: "📣"
+        }  
+      ])
+      })
   }, [socket]);
 
+  const scrollToBottom = () => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollTop = chatEndRef.current.scrollHeight;
+    }
+  };
+
   const handleSendMessage = (message: string) => {
-    setChatHistory((prevHistory) => [...prevHistory, { message: "나: " + message }]);
+    setChatHistory((prevHistory) => [...prevHistory, { message: message, sender: "나" }]);
     socket?.send(JSON.stringify({ message: message }))
   };
 
   const handleQuit = () => {
-    setChatHistory((prevHistory) => [...prevHistory, { message: "채팅이 종료되었습니다." }]);
+    setChatHistory((prevHistory) => [...prevHistory, { message: "채팅이 종료되었습니다.", sender: "📣" }]);
     setChatting(false)
     socket?.close()
   };
@@ -98,11 +114,15 @@ const Home = () => {
           <Logo src={"/underlive-logo.png"} alt="logo" />
           {isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
         </Header>
-        <Chattab>
-          {chatHistory.map((chat, index) => (
-            <p key={index}>{chat.message}</p>
-          ))}
-          <div ref={chatEndRef} />
+        <Chattab ref={chatEndRef}>
+          {chatHistory.map((chat, index) => 
+           <div key={index} className="block mb-3">
+              <div className="bg-stone-800 px-3 py-2 inline-block rounded-xl">
+                <p className="text-sm text-slate-200">{chat.sender}</p>
+                <p>{chat.message}</p>
+              </div>
+           </div> 
+          )}
         </Chattab>
         {isChatting && <Button onSendMessage={handleSendMessage} />}
         {!isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}

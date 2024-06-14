@@ -20,6 +20,7 @@ const StyledStartButton = styled.button`
   margin-top: 1vh;
   padding: 10px;
   width: 90%;
+  font-weight: 700;
 `;
 
 interface QuitButtonProps {

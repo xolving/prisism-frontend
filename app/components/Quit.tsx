@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import QuitIcon from "./icons/Quit-icon";
 
 const StyledQuitButton = styled.button`
-  width: 6vw;
-  height: 5vh;
+  padding: 10px;
   background-color: #2A2A2A;
   text-align: center;
   border: solid #434242;
@@ -28,7 +28,7 @@ interface QuitButtonProps {
 }
 
 const QuitButton: React.FC<QuitButtonProps> = ({ onClick }) => {
-  return <StyledQuitButton onClick={onClick}>나가기</StyledQuitButton>;
+  return <StyledQuitButton onClick={onClick}><QuitIcon width={24} height={24} /></StyledQuitButton>;
 };
 
 interface StartButtonProps {

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Button from "./components/Button";
-import Logo from "./components/Logo";
+import Logo from "./components/icons/Logo";
 import Quit from "./components/Quit";
 
 interface ChatHistory {

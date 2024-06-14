@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Button from "./components/Button";
+import Logo from "./components/Logo";
 import Quit from "./components/Quit";
 
 interface ChatHistory {
@@ -44,11 +45,6 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const Logo = styled.img`
-  width: 10vw;
-  height: 5vh;
 `;
 
 const Home = () => {
@@ -95,7 +91,7 @@ const Home = () => {
 
   const handleChatStart = async () => {
     setChatting(true)
-    setSocket(new WebSocket(process.env.SERVER_ADDRESS ?? ""))
+    setSocket(new WebSocket(process.env.NEXT_PUBLIC_SERVER_ADDRESS ?? ""))
   };
 
   socket?.addEventListener('close', () => {
@@ -111,7 +107,7 @@ const Home = () => {
     <div className="flex items-center justify-center h-screen">
       <Main className="max-w-4xl">
         <Header>
-          <Logo src={"/underlive-logo.png"} alt="logo" />
+          <Logo width={125} height={50} />
           {isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
         </Header>
         <Chattab ref={chatEndRef}>

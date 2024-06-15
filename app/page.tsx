@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Button from "./components/Button";
 import Logo from "./components/icons/Logo";
 import Quit from "./components/Quit";
-import Status from "./components/Status";
 
 interface ChatHistory {
   message: string;
@@ -125,7 +124,6 @@ const Home = () => {
           {isChatting && <Button onSendMessage={handleSendMessage} />}
           {!isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
         </Main>
-        <Status />
       </div>
     </div>
   );

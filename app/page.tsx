@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Button from "./components/Button";
 import Logo from "./components/icons/Logo";
 import Quit from "./components/Quit";
+import Status from "./components/Status";
 
 interface ChatHistory {
   message: string;
@@ -105,24 +106,27 @@ const Home = () => {
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <Main className="max-w-4xl">
-        <Header>
-          <Logo width={125} height={50} />
-          {isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
-        </Header>
-        <Chattab ref={chatEndRef}>
-          {chatHistory.map((chat, index) => 
-           <div key={index} className="block mb-3">
-              <div className="bg-stone-800 px-3 py-2 inline-block rounded-xl">
-                <p className="text-sm text-slate-200">{chat.sender}</p>
-                <p>{chat.message}</p>
-              </div>
-           </div> 
-          )}
-        </Chattab>
-        {isChatting && <Button onSendMessage={handleSendMessage} />}
-        {!isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
-      </Main>
+      <div className="max-w-4xl flex">
+        <Main>
+          <Header>
+            <Logo width={125} height={50} />
+            {isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
+          </Header>
+          <Chattab ref={chatEndRef}>
+            {chatHistory.map((chat, index) => 
+            <div key={index} className="block mb-3">
+                <div className="bg-stone-800 px-3 py-2 inline-block rounded-xl">
+                  <p className="text-sm text-slate-200">{chat.sender}</p>
+                  <p>{chat.message}</p>
+                </div>
+            </div> 
+            )}
+          </Chattab>
+          {isChatting && <Button onSendMessage={handleSendMessage} />}
+          {!isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
+        </Main>
+        <Status />
+      </div>
     </div>
   );
 };

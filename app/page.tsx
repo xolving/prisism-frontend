@@ -40,6 +40,7 @@ const ChatTab = styled.div`
   margin-top: 1vh;
   padding: 10px;
   width: 100%;
+  align-content: end;
 
   @media screen and (max-width: 768px) {
     height: 70vh;
@@ -54,6 +55,16 @@ const UtilTab = styled.div`
   width: 100%;
   display: flex;
   column-gap: 6px;
+  
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`
+
+const Mobile = styled.div`
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `
 
 export default function Page(){
@@ -132,13 +143,16 @@ export default function Page(){
             {chatHistory.map((chat, index) => 
               <div key={index} className="block mb-3">
                 <div className="bg-stone-800 px-3 py-2 inline-block rounded-xl">
-                  <p className="text-sm text-slate-200">{chat.sender}</p>
+                  <p className="text-sm dtext-slate-200">{chat.sender}</p>
                   <p>{chat.message}</p>
                 </div>
               </div> 
             )}
             <div ref={chatEndRef} />
           </ChatTab>
+          <div className="flex">
+            <Mobile><Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} /></Mobile>
+          </div>
           <Button onSendMessage={handleSendMessage} onStartChat={handleChatStart} isChatting={isChatting} />
         </Main>
       </div>

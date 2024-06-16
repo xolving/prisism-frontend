@@ -31,7 +31,7 @@ const Main = styled.div`
 
 const ChatTab = styled.div`
   margin: 10px;
-  height: 70vh;
+  height: 50vh;
   background-color: #313131;
   text-align: left;
   border: solid #434242;
@@ -41,8 +41,8 @@ const ChatTab = styled.div`
   padding: 10px;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
-    height: 50vh;
+  @media screen and (max-width: 768px) {
+    height: 70vh;
   }
 `;
 
@@ -122,7 +122,7 @@ export default function Page(){
 
   return (
     <div className="flex items-center justify-center">
-      <div className="max-w-4xl flex h-[85vh]">
+      <div className="flex h-[85vh]">
         <Main>
           <UtilTab>
             <CurrentPlayer />

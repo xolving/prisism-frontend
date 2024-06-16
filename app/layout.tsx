@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
-import Header from "./components/header/Header";
-import Notice from "./components/header/Notice";
+import Header from "./components/Header";
 import "./globals.css";
 
 const inter = localFont({ 
@@ -21,7 +20,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Notice />
         <Header />
         {children}
       </body>

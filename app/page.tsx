@@ -47,72 +47,81 @@ const Chattab = styled.div`
 const Home = () => {
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
   const [isChatting, setChatting] = useState(false);
-  const [socket, setSocket] = useState<WebSocket | null>(null)
+  const [socket, setSocket] = useState<WebSocket | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
+  }, [chatHistory]);
 
-    socket?.addEventListener('message', (ev: MessageEvent<any>) => {
-      setChatHistory((prevHistory) => [...prevHistory, JSON.parse(ev.data).status == undefined ? 
-        {
-          message: JSON.parse(ev.data).message,
-          sender: "상대방"
-        } 
-        : {
-          message: JSON.parse(ev.data).status,
-          sender: "📣"
-        }  
-      ])
-      })
-  }, [socket]);
+  useEffect(() => {
+    if (socket) {
+      const handleIncomingMessage = (ev: MessageEvent<any>) => {
+        const data = JSON.parse(ev.data);
+        setChatHistory((prevHistory) => [
+          ...prevHistory,
+          data.status === undefined 
+            ? { message: data.message, sender: "상대방" } 
+            : { message: data.status, sender: "📣" }
+        ]);
+      };
 
-  const scrollToBottom = () => {
-    if (chatEndRef.current) {
-      chatEndRef.current.scrollTop = chatEndRef.current.scrollHeight;
+      socket.addEventListener('message', handleIncomingMessage);
+
+      return () => {
+        socket.removeEventListener('message', handleIncomingMessage);
+      };
     }
-  };
+  }, [socket]);
 
   const handleSendMessage = (message: string) => {
     setChatHistory((prevHistory) => [...prevHistory, { message: message, sender: "나" }]);
-    socket?.send(JSON.stringify({ message: message }))
+    socket?.send(JSON.stringify({ message: message }));
   };
 
   const handleQuit = () => {
     setChatHistory((prevHistory) => [...prevHistory, { message: "채팅이 종료되었습니다.", sender: "📣" }]);
-    setChatting(false)
-    socket?.close()
+    setChatting(false);
+    socket?.close();
   };
 
   const handleChatStart = async () => {
-    setChatting(true)
-    setSocket(new WebSocket(process.env.NEXT_PUBLIC_SERVER_ADDRESS ?? ""))
+    setChatting(true);
+    setSocket(new WebSocket(process.env.NEXT_PUBLIC_SERVER_ADDRESS ?? ""));
   };
 
-  socket?.addEventListener('close', () => {
-    setChatting(false)
-    socket?.close()
-  })
+  useEffect(() => {
+    if (socket) {
+      socket.addEventListener('close', () => {
+        setChatting(false);
+      });
 
-  socket?.addEventListener('open', (ev: Event) => {
-    setChatHistory([])
-  })
+      socket.addEventListener('open', () => {
+        setChatHistory([]);
+      });
+
+      return () => {
+        socket.close();
+      };
+    }
+  }, [socket]);
 
   return (
     <div className="flex items-center justify-center">
       <div className="max-w-4xl flex h-[85vh]">
         <Main>
-          <Chattab ref={chatEndRef}>
+          <Chattab>
             {chatHistory.map((chat, index) => 
-            <div key={index} className="block mb-3">
+              <div key={index} className="block mb-3">
                 <div className="bg-stone-800 px-3 py-2 inline-block rounded-xl">
                   <p className="text-sm text-slate-200">{chat.sender}</p>
                   <p>{chat.message}</p>
                 </div>
-            </div> 
+              </div> 
             )}
+            <div ref={chatEndRef} />
           </Chattab>
           {isChatting && <Button onSendMessage={handleSendMessage} />}
           {!isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}

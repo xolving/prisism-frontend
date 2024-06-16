@@ -12,7 +12,7 @@ const StyledHeader = styled.header`
 export default function Notice(){
     return (
         <StyledHeader>
-            <p>🚧 현재 언더라이브는 베타 버전입니다 🚧</p>
+            <p>🚧 현재 프리시즘는 베타 버전입니다 🚧</p>
         </StyledHeader>
     )
 }

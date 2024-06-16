@@ -9,8 +9,8 @@ const inter = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "언더라이브",
-  description: "언더라이브 랜덤채팅",
+  title: "프리시즘 랜덤채팅",
+  description: "프리시즘 일대일 랜덤채팅",
 };
 
 export default function RootLayout({

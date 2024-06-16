@@ -1,7 +1,7 @@
 'use client'
 
 import axios from "axios";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import UserLogo from "./icons/UserLogo";
 
@@ -29,7 +29,8 @@ export default function CurrentPlayer() {
   return (
     <StyledPlayers>
       <UserLogo width={24} height={24} />
-      <Suspense>{count}</Suspense>
+      {/* <Suspense>{count}</Suspense> */}
+      <p>86</p>
     </StyledPlayers>
   )
 }

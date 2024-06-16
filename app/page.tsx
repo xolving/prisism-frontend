@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Button from "./components/Button";
-import Logo from "./components/icons/Logo";
 import Quit from "./components/Quit";
 
 interface ChatHistory {
@@ -14,7 +13,6 @@ interface ChatHistory {
 const Main = styled.div`
   width: 58vw;
   height: 70vh;
-  background-color: #2a2a2a;
   margin-left: auto;
   margin-right: auto;
   margin-top: auto;
@@ -104,13 +102,9 @@ const Home = () => {
   })
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="max-w-4xl flex">
+    <div className="flex items-center justify-center">
+      <div className="max-w-4xl flex h-[90vh]">
         <Main>
-          <Header>
-            <Logo width={125} height={50} />
-            {isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
-          </Header>
           <Chattab ref={chatEndRef}>
             {chatHistory.map((chat, index) => 
             <div key={index} className="block mb-3">
@@ -123,6 +117,7 @@ const Home = () => {
           </Chattab>
           {isChatting && <Button onSendMessage={handleSendMessage} />}
           {!isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
+          {isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
         </Main>
       </div>
     </div>

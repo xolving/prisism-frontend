@@ -9,8 +9,13 @@ const StyledStartButton = styled.button`
   border-radius: 10px;
   margin-top: 1vh;
   padding: 10px;
-  width: 90%;
+  width: 100%;
   font-weight: 700;
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    bottom: 0;  
+  }
 `;
 
 interface StartButtonProps {

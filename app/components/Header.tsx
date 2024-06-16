@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import styled from "styled-components";
 import Logo from "./icons/Logo";
 
@@ -14,7 +15,7 @@ const StyledHeader = styled.header`
 export default function Header(){
     return (
         <StyledHeader>
-            <Logo width={125} height={50} />
+            <Link href={"/"}><Logo width={125} height={50} /></Link>
         </StyledHeader>
     )
 }

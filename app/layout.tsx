@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
-import Header from "./components/Header";
-import Notice from "./components/Notice";
+import Header from "./components/header/Header";
+import Notice from "./components/header/Notice";
 import "./globals.css";
 
 const inter = localFont({ 

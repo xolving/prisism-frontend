@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import StartButton from "./StartButton";
 
 const Chatinput = styled.input`
   margin: 10px;
@@ -13,7 +14,13 @@ const Chatinput = styled.input`
   width: 90%;
 `;
 
-const Button = ({ onSendMessage }: { onSendMessage: any }) => {
+interface Props {
+  onSendMessage: (input: string) => void;
+  isChatting: boolean;
+  onStartChat: () => void;
+}
+
+const Button = ({ onSendMessage, isChatting, onStartChat }: Props) => {
   const [value, setValue] = useState('');
   const [isComposing, setComposing] = useState(false);
 
@@ -38,8 +45,8 @@ const Button = ({ onSendMessage }: { onSendMessage: any }) => {
     }
   };
 
-  return (
-    <Chatinput
+  return isChatting ? (
+    <Chatinput 
       value={value}
       onChange={(e) => setValue(e.target.value)}
       onKeyDown={handleKeyPress}
@@ -47,7 +54,9 @@ const Button = ({ onSendMessage }: { onSendMessage: any }) => {
       onCompositionEnd={handleComposition}
       placeholder="채팅을 입력해주세요."
     />
-  );
+  ) : (
+    <StartButton onClick={onStartChat} />
+  )
 };
 
 export default Button;

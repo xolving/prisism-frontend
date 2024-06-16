@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styled from "styled-components";
-import Logo from "./icons/Logo";
+import Logo from "../icons/Logo";
 
 const StyledHeader = styled.header`
     display: flex;

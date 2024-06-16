@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import Button from "./components/Button";
-import Quit from "./components/Quit";
+import CurrentPlayer from "./components/CurrentPlayer";
+import Button from "./components/form/ChatInput";
+import Quit from "./components/form/QuitButton";
 
 interface ChatHistory {
   message: string;
@@ -27,7 +28,7 @@ const Main = styled.div`
   }
 `;
 
-const Chattab = styled.div`
+const ChatTab = styled.div`
   margin: 10px;
   height: 70vh;
   background-color: #313131;
@@ -44,7 +45,17 @@ const Chattab = styled.div`
   }
 `;
 
-const Home = () => {
+const UtilTab = styled.div`
+  text-align: left;
+  border-radius: 10px;
+  overflow-y: auto;
+  margin-top: 1vh;
+  width: 90%;
+  display: flex;
+  column-gap: 6px;
+`
+
+export default function Page(){
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
   const [isChatting, setChatting] = useState(false);
   const [socket, setSocket] = useState<WebSocket | null>(null);
@@ -112,7 +123,11 @@ const Home = () => {
     <div className="flex items-center justify-center">
       <div className="max-w-4xl flex h-[85vh]">
         <Main>
-          <Chattab>
+          <UtilTab>
+            <CurrentPlayer />
+            <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />
+          </UtilTab>
+          <ChatTab>
             {chatHistory.map((chat, index) => 
               <div key={index} className="block mb-3">
                 <div className="bg-stone-800 px-3 py-2 inline-block rounded-xl">
@@ -122,14 +137,10 @@ const Home = () => {
               </div> 
             )}
             <div ref={chatEndRef} />
-          </Chattab>
-          {isChatting && <Button onSendMessage={handleSendMessage} />}
-          {!isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
-          {isChatting && <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />}
+          </ChatTab>
+          <Button onSendMessage={handleSendMessage} onStartChat={handleChatStart} isChatting={isChatting} />
         </Main>
       </div>
     </div>
   );
 };
-
-export default Home;

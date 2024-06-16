@@ -75,7 +75,7 @@ export default function Page(){
 
   useEffect(() => {
     if (chatEndRef.current) {
-      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+      chatEndRef.current.scrollIntoView({ behavior: "auto" });
     }
   }, [chatHistory]);
 
@@ -112,7 +112,7 @@ export default function Page(){
 
   const handleChatStart = async () => {
     setChatting(true);
-    setSocket(new WebSocket(`wss://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
+    setSocket(new WebSocket(`ws://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
   };
 
   useEffect(() => {

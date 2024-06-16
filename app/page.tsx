@@ -102,7 +102,7 @@ const Home = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="max-w-4xl flex h-[90vh]">
+      <div className="max-w-4xl flex h-[85vh]">
         <Main>
           <Chattab ref={chatEndRef}>
             {chatHistory.map((chat, index) => 

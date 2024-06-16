@@ -11,22 +11,25 @@ interface ChatHistory {
 }
 
 const Main = styled.div`
-  width: 58vw;
-  height: 70vh;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
+  width: 90vw;
+  height: 100vh;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
   border-radius: 10px;
+
+  @media screen and (min-width: 768px) {
+    height: 70vh;
+    width: 58vw;
+    margin: auto;
+  }
 `;
 
 const Chattab = styled.div`
   margin: 10px;
-  height: 50vh;
+  height: 70vh;
   background-color: #313131;
   text-align: left;
   border: solid #434242;
@@ -35,14 +38,10 @@ const Chattab = styled.div`
   margin-top: 1vh;
   padding: 10px;
   width: 90%;
-`;
 
-const Header = styled.div`
-  padding-top: 20px;
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @media screen and (min-width: 768px) {
+    height: 50vh;
+  }
 `;
 
 const Home = () => {

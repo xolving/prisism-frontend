@@ -16,6 +16,7 @@ const Chatinput = styled.input`
   @media screen and (max-width: 768px) {
     position: fixed;
     bottom: 0;  
+    margin: 0;
   }
 `;
 

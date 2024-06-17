@@ -25,12 +25,13 @@ const Main = styled.div`
     width: 100vw;
     margin: 20px;
     border-radius: 0;
+    text-align: left;
   }
 `;
 
 const ChatTab = styled.div`
   margin: 10px;
-  height: 53vh;
+  height: 50vh;
   text-align: left;
   border-radius: 10px;
   overflow-y: auto;
@@ -39,7 +40,8 @@ const ChatTab = styled.div`
   align-content: end;
 
   @media screen and (max-width: 768px) {
-    height: 70vh;
+    height: 100%;
+    padding-bottom: 3vh;
   }
 `;
 
@@ -130,7 +132,7 @@ export default function Page(){
       <div className="flex h-[90vh]">
         <Main>
           <ChatTabOrigin>
-            <CurrentPlayer />
+            <CurrentPlayer /> 
             <ChatTab>
               {chatHistory.map((chat, index) => 
                 <div key={index} className="block mb-3">

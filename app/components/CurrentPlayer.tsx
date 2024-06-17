@@ -11,6 +11,10 @@ const StyledPlayers = styled.div`
   text-align: center;
   display: flex;
   column-gap: 12px;
+
+  @media screen and (max-width: 768px) {
+    display: none
+  }
 `;
 
 export default function CurrentPlayer() {

@@ -110,7 +110,7 @@ export default function Page(){
 
   useEffect(() => {
     if (socket) {
-      socket.addEventListener('close', () => {
+      socket.addEventListener('close', (ev: CloseEvent) => {
         setChatting(false);
       });
 

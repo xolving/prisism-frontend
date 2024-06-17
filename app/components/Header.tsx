@@ -33,9 +33,8 @@ export default function Header(){
         <StyledHeader>
             <Link href={"/"}><Logo width={50} height={50} /></Link>
             <Menu>
-                <Link href={"/"}>공지사항</Link>
-                <Link href={"/"}>문의하기</Link>
-                <Link href={"/"}>게시판</Link>
+                <Link href={"/about"}>소개</Link>
+                <Link href={"/board"}>게시판</Link>
             </Menu>
         </StyledHeader>
     )

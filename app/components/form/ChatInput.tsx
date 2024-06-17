@@ -15,6 +15,7 @@ const Bottom = styled.div`
 const Chatinput = styled.input`
   background-color: #313131;
   text-align: left;
+  width: 95%;
 
   @media screen and (max-width: 768px) {
     position: fixed;

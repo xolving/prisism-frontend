@@ -57,6 +57,7 @@ const ChatTabOrigin = styled.div`
 
   @media screen and (max-width: 768px) {
     height: 100%;
+    border: none;
   }
 `;
 

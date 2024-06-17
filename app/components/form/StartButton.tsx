@@ -11,9 +11,10 @@ const StyledStartButton = styled.button`
   font-weight: 700;
 
   @media screen and (max-width: 768px) {
-    margin: 0;
     position: fixed;
     bottom: 0;  
+    border-radius: 0;
+    height: 6vh;
   }
 `;
 

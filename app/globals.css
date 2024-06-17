@@ -5,11 +5,16 @@
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-rgb: #141414;
+  --background-chat-rgb: #313131;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: var(--background-rgb);
+
+  @media screen and (max-width: 768px) {
+    background-color: var(--background-chat-rgb);
+  }
 }
 
 @layer utilities {

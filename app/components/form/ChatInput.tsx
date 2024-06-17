@@ -15,6 +15,8 @@ const Bottom = styled.div`
     position: fixed;
     bottom: 0;  
     margin: 0;
+    border-radius: 0;
+    padding: 15px 30px;
   }
 `
 

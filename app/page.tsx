@@ -23,7 +23,6 @@ const Main = styled.div`
   @media screen and (max-width: 768px) {
     height: 100vh;
     width: 100vw;
-    margin: 20px;
     border-radius: 0;
     text-align: left;
   }
@@ -40,7 +39,7 @@ const ChatTab = styled.div`
   align-content: end;
 
   @media screen and (max-width: 768px) {
-    height: 100%;
+    height: 90%;
     padding-bottom: 3vh;
   }
 `;

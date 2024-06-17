@@ -13,8 +13,11 @@ const StyledStartButton = styled.button`
   @media screen and (max-width: 768px) {
     position: fixed;
     bottom: 0;  
+    left: 0;
+    right: 0;
     border-radius: 0;
     height: 6vh;
+    z-index: 1000;
   }
 `;
 

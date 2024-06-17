@@ -105,7 +105,7 @@ export default function Page(){
 
   const handleChatStart = async () => {
     setChatting(true);
-    setSocket(new WebSocket(`ws://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
+    setSocket(new WebSocket(`wss://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
   };
 
   useEffect(() => {

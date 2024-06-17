@@ -7,10 +7,7 @@ import UserLogo from "./icons/UserLogo";
 
 const StyledPlayers = styled.div`
   padding: 10px;
-  background-color: #2A2A2A;
   text-align: center;
-  border: solid #434242;
-  border-radius: 10px;
   display: flex;
   column-gap: 12px;
 `;

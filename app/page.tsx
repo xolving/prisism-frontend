@@ -30,14 +30,11 @@ const Main = styled.div`
 
 const ChatTab = styled.div`
   margin: 10px;
-  height: 50vh;
-  background-color: #313131;
+  height: 43vh;
   text-align: left;
-  border: solid #434242;
   border-radius: 10px;
   overflow-y: auto;
   margin-top: 1vh;
-  padding: 10px;
   width: 100%;
   align-content: end;
 
@@ -46,27 +43,22 @@ const ChatTab = styled.div`
   }
 `;
 
-const UtilTab = styled.div`
-  height: 68vh;
-  margin: auto;
-  align-items: center;
-  color: white;
+const ChatTabOrigin = styled.div`
+  margin: 10px;
+  height: 50vh;
+  background-color: #313131;
+  text-align: left;
+  border: solid #434242;
   border-radius: 10px;
-  padding-left: 10px;
+  margin-top: 1vh;
+  padding: 10px;
+  width: 100%;
+  align-content: end;
 
   @media screen and (max-width: 768px) {
-    height: 100vh;
-    width: 100vw;
-    margin: 20px;
-    border-radius: 0;
+    height: 100%;
   }
 `;
-
-const Mobile = styled.div`
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-`
 
 export default function Page(){
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
@@ -113,7 +105,7 @@ export default function Page(){
 
   const handleChatStart = async () => {
     setChatting(true);
-    setSocket(new WebSocket(`wss://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
+    setSocket(new WebSocket(`ws://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
   };
 
   useEffect(() => {
@@ -136,22 +128,22 @@ export default function Page(){
     <div className="flex items-center justify-center">
       <div className="flex h-[90vh]">
         <Main>
-          <ChatTab>
-            {chatHistory.map((chat, index) => 
-              <div key={index} className="block mb-3">
-                <div className="bg-stone-800 px-3 py-2 inline-block rounded-xl">
-                  <p className="text-sm dtext-slate-200">{chat.sender}</p>
-                  <p>{chat.message}</p>
-                </div>
-              </div> 
-            )}
-            <div ref={chatEndRef} />
-          </ChatTab>
+          <ChatTabOrigin>
+            <CurrentPlayer />
+            <ChatTab>
+              {chatHistory.map((chat, index) => 
+                <div key={index} className="block mb-3">
+                  <div className="bg-stone-800 px-3 py-2 inline-block rounded-xl">
+                    <p className="text-sm dtext-slate-200">{chat.sender}</p>
+                    <p>{chat.message}</p>
+                  </div>
+                </div> 
+              )}
+              <div ref={chatEndRef} />
+            </ChatTab>
+          </ChatTabOrigin>
           <Button onSendMessage={handleSendMessage} onStartChat={handleChatStart} isChatting={isChatting} onQuit={handleQuit} />
         </Main>
-        <UtilTab>
-          <CurrentPlayer />
-        </UtilTab>
       </div>
     </div>
   );

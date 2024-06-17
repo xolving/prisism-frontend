@@ -10,18 +10,18 @@ const Bottom = styled.div`
   display: flex;
   padding: 10px;
   width: 100%;
-`
-
-const Chatinput = styled.input`
-  background-color: #313131;
-  text-align: left;
-  width: 95%;
 
   @media screen and (max-width: 768px) {
     position: fixed;
     bottom: 0;  
     margin: 0;
   }
+`
+
+const Chatinput = styled.input`
+  background-color: #313131;
+  text-align: left;
+  width: 95%;
 `
 
 const StyledQuitButton = styled.button`

@@ -1,32 +1,41 @@
 import { useState } from "react";
 import styled from "styled-components";
+import QuitIcon from "../icons/QuitIcon";
 import StartButton from "./StartButton";
 
-const Chatinput = styled.input`
-  margin: 10px;
-  height: 5vh;
+const Bottom = styled.div`
   background-color: #313131;
-  text-align: left;
   border: solid #434242;
   border-radius: 10px;
-  margin-top: 1vh;
+  display: flex;
   padding: 10px;
   width: 100%;
+`
+
+const Chatinput = styled.input`
+  background-color: #313131;
+  text-align: left;
 
   @media screen and (max-width: 768px) {
     position: fixed;
     bottom: 0;  
     margin: 0;
   }
-`;
+`
+
+const StyledQuitButton = styled.button`
+  text-align: center;
+  margin-left: auto;
+`
 
 interface Props {
   onSendMessage: (input: string) => void;
+  onQuit: () => void;
   isChatting: boolean;
   onStartChat: () => void;
 }
 
-const Button = ({ onSendMessage, isChatting, onStartChat }: Props) => {
+const Button = ({ onSendMessage, isChatting, onStartChat, onQuit }: Props) => {
   const [value, setValue] = useState('');
   const [isComposing, setComposing] = useState(false);
 
@@ -52,14 +61,17 @@ const Button = ({ onSendMessage, isChatting, onStartChat }: Props) => {
   };
 
   return isChatting ? (
-    <Chatinput 
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      onKeyDown={handleKeyPress}
-      onCompositionStart={handleComposition}
-      onCompositionEnd={handleComposition}
-      placeholder="채팅을 입력해주세요."
-    />
+    <Bottom>
+      <Chatinput 
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onKeyDown={handleKeyPress}
+        onCompositionStart={handleComposition}
+        onCompositionEnd={handleComposition}
+        placeholder="채팅을 입력해주세요."
+      />
+      <StyledQuitButton onClick={onQuit}><QuitIcon width={22} height={22} /></StyledQuitButton>
+    </Bottom>
   ) : (
     <StartButton onClick={onStartChat} />
   )

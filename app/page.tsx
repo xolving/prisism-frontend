@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import CurrentPlayer from "./components/CurrentPlayer";
 import Button from "./components/form/ChatInput";
-import Quit from "./components/form/QuitButton";
 
 interface ChatHistory {
   message: string;
@@ -48,18 +47,20 @@ const ChatTab = styled.div`
 `;
 
 const UtilTab = styled.div`
-  text-align: left;
+  height: 68vh;
+  margin: auto;
+  align-items: center;
+  color: white;
   border-radius: 10px;
-  overflow-y: auto;
-  margin-top: 1vh;
-  width: 100%;
-  display: flex;
-  column-gap: 6px;
-  
+  padding-left: 10px;
+
   @media screen and (max-width: 768px) {
-    display: none;
+    height: 100vh;
+    width: 100vw;
+    margin: 20px;
+    border-radius: 0;
   }
-`
+`;
 
 const Mobile = styled.div`
   @media screen and (min-width: 768px) {
@@ -112,7 +113,7 @@ export default function Page(){
 
   const handleChatStart = async () => {
     setChatting(true);
-    setSocket(new WebSocket(`wss://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
+    setSocket(new WebSocket(`ws://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
   };
 
   useEffect(() => {
@@ -133,12 +134,8 @@ export default function Page(){
 
   return (
     <div className="flex items-center justify-center">
-      <div className="flex h-[85vh]">
+      <div className="flex h-[90vh]">
         <Main>
-          <UtilTab>
-            <CurrentPlayer />
-            <Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} />
-          </UtilTab>
           <ChatTab>
             {chatHistory.map((chat, index) => 
               <div key={index} className="block mb-3">
@@ -150,11 +147,11 @@ export default function Page(){
             )}
             <div ref={chatEndRef} />
           </ChatTab>
-          <div className="flex">
-            <Mobile><Quit onQuit={handleQuit} isChatting={isChatting} onStartChat={handleChatStart} /></Mobile>
-          </div>
-          <Button onSendMessage={handleSendMessage} onStartChat={handleChatStart} isChatting={isChatting} />
+          <Button onSendMessage={handleSendMessage} onStartChat={handleChatStart} isChatting={isChatting} onQuit={handleQuit} />
         </Main>
+        <UtilTab>
+          <CurrentPlayer />
+        </UtilTab>
       </div>
     </div>
   );

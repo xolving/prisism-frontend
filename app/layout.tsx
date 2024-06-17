@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
+import GoogleAdsense from "./components/GoogleAdsense";
 import Header from "./components/Header";
 import "./globals.css";
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Header />
         {children}
       </body>
+      <GoogleAdsense />
     </html>
   );
 }

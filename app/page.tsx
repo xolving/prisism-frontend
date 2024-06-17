@@ -30,7 +30,7 @@ const Main = styled.div`
 
 const ChatTab = styled.div`
   margin: 10px;
-  height: 43vh;
+  height: 53vh;
   text-align: left;
   border-radius: 10px;
   overflow-y: auto;
@@ -45,7 +45,7 @@ const ChatTab = styled.div`
 
 const ChatTabOrigin = styled.div`
   margin: 10px;
-  height: 50vh;
+  height: 60vh;
   background-color: #313131;
   text-align: left;
   border: solid #434242;
@@ -105,7 +105,7 @@ export default function Page(){
 
   const handleChatStart = async () => {
     setChatting(true);
-    setSocket(new WebSocket(`wss://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
+    setSocket(new WebSocket(`${process.env.NEXT_PUBLIC_SOCKET_TYPE}://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
   };
 
   useEffect(() => {

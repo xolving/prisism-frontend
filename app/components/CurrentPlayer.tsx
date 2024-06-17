@@ -17,7 +17,7 @@ export default function CurrentPlayer() {
 
   useEffect(() => {
     const fetchCount = async () => {
-      const response = await axios.get(`https://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/room/player`)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_HTTP_TYPE}://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/room/player`)
       setCount(response.data.count)
     } 
     fetchCount()

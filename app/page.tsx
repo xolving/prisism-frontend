@@ -47,9 +47,9 @@ const ChatTab = styled.div`
 const ChatTabOrigin = styled.div`
   margin: 10px;
   height: 60vh;
-  background-color: #313131;
+  background-color: #262626;
   text-align: left;
-  border: solid #434242;
+  border: 1px solid #313131;
   border-radius: 10px;
   margin-top: 1vh;
   padding: 10px;
@@ -61,6 +61,14 @@ const ChatTabOrigin = styled.div`
     border: none;
   }
 `;
+
+const Chat = styled.div`
+  padding: 8px 12px;
+  display: inline-block;
+  border-radius: 12px;
+  background-color: #232323;
+  border: 1px solid #424a47;
+`
 
 export default function Page(){
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
@@ -135,10 +143,10 @@ export default function Page(){
             <ChatTab>
               {chatHistory.map((chat, index) => 
                 <div key={index} className="block mb-3">
-                  <div className="bg-stone-800 px-3 py-2 inline-block rounded-xl">
-                    <p className="text-sm dtext-slate-200">{chat.sender}</p>
+                  <Chat>
+                    <p className="text-sm text-slate-200">{chat.sender}</p>
                     <p>{chat.message}</p>
-                  </div>
+                  </Chat>
                 </div> 
               )}
               <div ref={chatEndRef} />

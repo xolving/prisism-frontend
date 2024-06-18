@@ -4,8 +4,8 @@ import QuitIcon from "../icons/QuitIcon";
 import StartButton from "./StartButton";
 
 const Bottom = styled.div`
-  background-color: #313131;
-  border: solid #434242;
+  background-color: #262626;
+  border: 1px solid #313131;
   border-radius: 10px;
   display: flex;
   padding: 10px;
@@ -21,7 +21,7 @@ const Bottom = styled.div`
 `
 
 const Chatinput = styled.input`
-  background-color: #313131;
+  background-color: #262626;
   text-align: left;
   width: 95%;
 `

@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 const StyledStartButton = styled.button`
   height: 5vh;
-  background-color: #313131;
+  background-color: #262626;
   text-align: center;
-  border: solid #434242;
+  border: 1px solid #313131;
   border-radius: 10px;
   padding: 10px;
   width: 100%;

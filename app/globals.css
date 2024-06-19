@@ -5,7 +5,7 @@
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-rgb: #141414;
-  --background-chat-rgb: #262626;
+  --background-secondary-rgb: #313131;
 }
 
 body {
@@ -13,7 +13,7 @@ body {
   background: var(--background-rgb);
 
   @media screen and (max-width: 768px) {
-    background-color: var(--background-chat-rgb);
+    background-color: var(--background-secondary-rgb);
   }
 }
 

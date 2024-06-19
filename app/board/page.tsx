@@ -1,8 +1,10 @@
 "use client"
 
 import axios from "axios";
-import { Suspense, useEffect, useState } from "react";
-import Content from "../components/Content";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import BoardList from "../components/\bBoardList";
+import * as L from "../styles/Layout";
 import { Board } from "../types/Board";
 
 export default function Page(){
@@ -18,12 +20,9 @@ export default function Page(){
     }, [])
 
     return (
-        <main>
-            <Suspense>
-                {boardList.map((board, index) => 
-                    <Content key={index} board={board} />)
-                }
-            </Suspense>
-        </main>
+        <L.Main>
+            <Link href={"/board/submit"} className="rounded-full border py-2 px-5 border-slate-500">작성하기</Link>
+            <BoardList boardList={boardList} />
+        </L.Main>
     )
 }

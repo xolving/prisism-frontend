@@ -39,8 +39,12 @@ export default function Page(){
   }, [socket]);
 
   const handleSendMessage = (message: string) => {
-    setChatHistory((prevHistory) => [...prevHistory, { message: message, sender: "나" }]);
-    socket?.send(JSON.stringify({ message: message }));
+    if(message.length < 50){
+      setChatHistory((prevHistory) => [...prevHistory, { message: message, sender: "나" }]);
+      socket?.send(JSON.stringify({ message: message }));
+    } else {
+      setChatHistory((prevHistory) => [...prevHistory, { message: "50자 이하로 작성해주세요.", sender: "📣" }]);
+    }
   };
 
   const handleQuit = () => {
@@ -51,7 +55,9 @@ export default function Page(){
 
   const handleChatStart = async () => {
     setChatting(true);
-    setSocket(new WebSocket(`${process.env.NEXT_PUBLIC_SOCKET_TYPE}://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat` ?? ""));
+    setSocket(new WebSocket(
+      `${process.env.NEXT_PUBLIC_SOCKET_TYPE}://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/ws/chat`
+    ));
   };
 
   useEffect(() => {

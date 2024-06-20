@@ -1,6 +1,6 @@
-import dayjs from "dayjs"
 import styled from "styled-components"
 import { Board } from "../types/Board"
+import { toKoreanDate } from "../util/korean-date"
 
 const StyledContent = styled.a`
     border: 1px solid var(--background-secondary-rgb);
@@ -19,7 +19,7 @@ export default function BoardList({ boardList }: { boardList: Board[] }){
             {boardList?.map((board, index) => 
                 <StyledContent key={index} href={`/board/${board.id}`}>
                     <h1>{board.title}</h1>
-                    <h1 className="ml-auto">{`${dayjs(board.createdAt).format("YYYY년 MM월 DD일")}`}</h1>
+                    <h1 className="ml-auto">{`${toKoreanDate(board.createdAt)}`}</h1>
                 </StyledContent>
             )}
         </div>

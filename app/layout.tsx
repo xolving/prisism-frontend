@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 import GoogleAdsense from "./components/GoogleAdsense";
 import Header from "./components/Header";
 import "./globals.css";
@@ -21,6 +23,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <ToastContainer
+          position="top-right"
+          autoClose={1500}
+          limit={3}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <Header />
         {children}
       </body>

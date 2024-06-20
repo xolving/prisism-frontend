@@ -1,22 +1,25 @@
+import dayjs from "dayjs"
 import styled from "styled-components"
 import { Board } from "../types/Board"
 
-const StyledContent = styled.div`
+const StyledContent = styled.a`
     border: 1px solid var(--background-secondary-rgb);
-    color: #eaeaea;
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 10px;
-    width: 120vh;
+    width: 100vh;
     padding-left: 35px;
+    padding-right: 20px;
     background-color: #262626;
+    display: flex;
 `
 
 export default function BoardList({ boardList }: { boardList: Board[] }){
     return (
         <div className="grid gap-y-2 mt-10">
             {boardList?.map((board, index) => 
-                <StyledContent key={index}>
-                    <h1 className="text-xl">{board.title}</h1>
+                <StyledContent key={index} href={`/board/${board.id}`}>
+                    <h1>{board.title}</h1>
+                    <h1 className="ml-auto">{`${dayjs(board.createdAt).format("YYYY년 MM월 DD일")}`}</h1>
                 </StyledContent>
             )}
         </div>

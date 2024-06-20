@@ -7,6 +7,7 @@ import { ContentLayout } from "@/app/styles/Layout";
 import { toKoreanDate } from "@/app/util/korean-date";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Textarea } from "./styled";
 
 export default function Page ({ params }: { params: { slug: string } }){
     const [board, setBoard] = useState<any>();
@@ -26,7 +27,7 @@ export default function Page ({ params }: { params: { slug: string } }){
             <Title>{board?.title}</Title>
             <SubTitle>{toKoreanDate(board?.createdAt)}</SubTitle>
             <Hr />
-            <p>{board?.content}</p>
+            <Textarea>{board?.content.replace(/<br\s*\/?>/img,'\n')}</Textarea>
         </ContentLayout>
     )
 }

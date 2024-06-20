@@ -3,7 +3,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import BoardList from "../components/\bBoardList";
+import BoardList from "../components/BoardList";
 import * as L from "../styles/Layout";
 import { Board } from "../types/Board";
 

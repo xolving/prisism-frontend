@@ -2,17 +2,19 @@
 
 import { Main } from "@/app/styles/Layout";
 import axios from "axios";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { ContentInput, TitleInput, UploadButton } from "./styled";
 
-export default function page(){
+export default function Page(){
+  const router = useRouter()
+
   const onSubmit = (e: any) => {
     if(e.get("title").length == 0 || e.get("content").length == 0) toast.error("제목과 내용이 비어있으면 안됩니다.")
     else {
       axios.post(`${process.env.NEXT_PUBLIC_HTTP_TYPE}://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/board`,
         { title: e.get("title"), content: e.get("content")})
-      redirect("/board")
+      router.push("/board")
     }
   }
 

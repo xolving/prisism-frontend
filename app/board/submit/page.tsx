@@ -13,7 +13,7 @@ export default function Page(){
     if(e.get("title").length == 0 || e.get("content").length == 0) toast.error("제목과 내용이 비어있으면 안됩니다.")
     else {
       axios.post(`${process.env.NEXT_PUBLIC_HTTP_TYPE}://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/board`,
-        { title: e.get("title"), content: e.get("content")})
+        { title: e.get("title"), content: e.get("content").replace(/n/g, "<br>")})
       router.push("/board")
     }
   }

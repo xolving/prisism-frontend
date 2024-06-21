@@ -34,9 +34,9 @@ export default function Page(){
         }
       }
 
-      setInterval(() => {
-        socket.send(JSON.stringify({ ping: "ping" }))
-      }, 8000);
+      // setInterval(() => {
+      //   socket.send(JSON.stringify({ ping: "ping" }))
+      // }, 8000);
 
       socket.addEventListener('message', handleIncomingMessage);
 

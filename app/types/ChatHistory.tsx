@@ -1,4 +1,4 @@
 export interface ChatHistory {
-    message: string
-    sender: string
+  message: string
+  sender: string
 }

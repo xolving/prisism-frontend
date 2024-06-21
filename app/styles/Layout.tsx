@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Main = styled.div`
   width: 70vw;
@@ -17,7 +17,7 @@ export const Main = styled.div`
     border-radius: 0;
     text-align: left;
   }
-`;
+`
 
 export const ContentLayout = styled.div`
   width: 70vw;
@@ -36,4 +36,4 @@ export const ContentLayout = styled.div`
     border-radius: 0;
     text-align: left;
   }
-`;
+`

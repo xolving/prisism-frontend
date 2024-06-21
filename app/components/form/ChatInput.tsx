@@ -13,7 +13,7 @@ const Bottom = styled.div`
 
   @media screen and (max-width: 768px) {
     position: fixed;
-    bottom: 0;  
+    bottom: 0;
     margin: 0;
     border-radius: 0;
     padding: 15px 30px;
@@ -61,19 +61,21 @@ const Button = ({ onSendMessage, isChatting, onStartChat, onQuit }: Props) => {
     } else if (e.type === 'compositionend') {
       setComposing(false)
     }
-  };
+  }
 
   return isChatting ? (
     <Bottom>
-      <Chatinput 
+      <Chatinput
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyPress}
         onCompositionStart={handleComposition}
         onCompositionEnd={handleComposition}
-        placeholder='채팅을 입력해주세요.'
+        placeholder="채팅을 입력해주세요."
       />
-      <StyledQuitButton onClick={onQuit}><QuitIcon width={22} height={22} /></StyledQuitButton>
+      <StyledQuitButton onClick={onQuit}>
+        <QuitIcon width={22} height={22} />
+      </StyledQuitButton>
     </Bottom>
   ) : (
     <StartButton onClick={onStartChat} />

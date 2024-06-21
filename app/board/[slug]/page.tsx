@@ -9,25 +9,27 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Textarea } from './styled'
 
-export default function Page ({ params }: { params: { slug: string } }){
-    const [board, setBoard] = useState<any>()
-    
-    useEffect(() => {
-        const fetchBoard = async  () => {
-            setBoard(await axios.get(
-                `${process.env.NEXT_PUBLIC_HTTP_TYPE}://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/board/${params.slug}`
-            ).then((res) => res.data))
-        }
+export default function Page({ params }: { params: { slug: string } }) {
+  const [board, setBoard] = useState<any>()
 
-        fetchBoard()
-    })
+  useEffect(() => {
+    const fetchBoard = async () => {
+      setBoard(
+        await axios
+          .get(`${process.env.NEXT_PUBLIC_HTTP_TYPE}://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/board/${params.slug}`)
+          .then((res) => res.data),
+      )
+    }
 
-    return (
-        <ContentLayout>
-            <Title>{board?.title}</Title>
-            <SubTitle>{toKoreanDate(board?.createdAt)}</SubTitle>
-            <Hr />
-            <Textarea>{board?.content.replace(/<br\s*\/?>/img,'\n')}</Textarea>
-        </ContentLayout>
-    )
+    fetchBoard()
+  })
+
+  return (
+    <ContentLayout>
+      <Title>{board?.title}</Title>
+      <SubTitle>{toKoreanDate(board?.createdAt)}</SubTitle>
+      <Hr />
+      <Textarea>{board?.content.replace(/<br\s*\/?>/gim, '\n')}</Textarea>
+    </ContentLayout>
+  )
 }

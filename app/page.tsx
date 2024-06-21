@@ -9,8 +9,8 @@ import { ChatHistory } from "./types/ChatHistory";
 export default function Page(){
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
   const [isChatting, setChatting] = useState(false);
-  const [socket, setSocket] = useState<WebSocket | null>(null);
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const [socket, setSocket] = useState<WebSocket>();
+  const chatEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (chatEndRef.current) {
@@ -21,14 +21,22 @@ export default function Page(){
   useEffect(() => {
     if (socket) {
       const handleIncomingMessage = (ev: MessageEvent<any>) => {
-        const data = JSON.parse(ev.data);
-        setChatHistory((prevHistory) => [
-          ...prevHistory,
-          data.status === undefined 
-            ? { message: data.message, sender: "상대방" } 
-            : { message: data.status, sender: "📣" }
-        ]);
-      };
+        const data = JSON.parse(ev.data)
+
+        if (data.status !== undefined && data.status !== null){
+          setChatHistory((prevHistory) => [
+            ...prevHistory, { message: data.status, sender: "📣" }
+          ])
+        } else if (data.message !== undefined && data.message !== null) {
+          setChatHistory((prevHistory) => [
+            ...prevHistory, { message: data.message, sender: "상대방" }
+          ])
+        }
+      }
+
+      setInterval(() => {
+        socket.send(JSON.stringify({ ping: "ping" }))
+      }, 8000);
 
       socket.addEventListener('message', handleIncomingMessage);
 

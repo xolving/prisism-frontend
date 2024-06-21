@@ -1,7 +1,7 @@
-import { useState } from "react";
-import styled from "styled-components";
-import QuitIcon from "../icons/QuitIcon";
-import StartButton from "./StartButton";
+import { useState } from 'react'
+import styled from 'styled-components'
+import QuitIcon from '../icons/QuitIcon'
+import StartButton from './StartButton'
 
 const Bottom = styled.div`
   background-color: #262626;
@@ -32,34 +32,34 @@ const StyledQuitButton = styled.button`
 `
 
 interface Props {
-  onSendMessage: (input: string) => void;
-  onQuit: () => void;
-  isChatting: boolean;
-  onStartChat: () => void;
+  onSendMessage: (input: string) => void
+  onQuit: () => void
+  isChatting: boolean
+  onStartChat: () => void
 }
 
 const Button = ({ onSendMessage, isChatting, onStartChat, onQuit }: Props) => {
-  const [value, setValue] = useState('');
-  const [isComposing, setComposing] = useState(false);
+  const [value, setValue] = useState('')
+  const [isComposing, setComposing] = useState(false)
 
   const sendToggle = () => {
-    if (value.trim() !== "") {
-      onSendMessage(value);
-      setValue('');
+    if (value.trim() !== '') {
+      onSendMessage(value)
+      setValue('')
     }
-  };
+  }
 
   const handleKeyPress = (e: any) => {
     if (e.key === 'Enter' && !isComposing) {
-      sendToggle();
+      sendToggle()
     }
-  };
+  }
 
   const handleComposition = (e: any) => {
     if (e.type === 'compositionstart') {
-      setComposing(true);
+      setComposing(true)
     } else if (e.type === 'compositionend') {
-      setComposing(false);
+      setComposing(false)
     }
   };
 
@@ -71,13 +71,13 @@ const Button = ({ onSendMessage, isChatting, onStartChat, onQuit }: Props) => {
         onKeyDown={handleKeyPress}
         onCompositionStart={handleComposition}
         onCompositionEnd={handleComposition}
-        placeholder="채팅을 입력해주세요."
+        placeholder='채팅을 입력해주세요.'
       />
       <StyledQuitButton onClick={onQuit}><QuitIcon width={22} height={22} /></StyledQuitButton>
     </Bottom>
   ) : (
     <StartButton onClick={onStartChat} />
   )
-};
+}
 
-export default Button;
+export default Button

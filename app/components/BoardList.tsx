@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { Board } from "../types/Board"
-import { toKoreanDate } from "../util/korean-date"
+import styled from 'styled-components'
+import { Board } from '../types/Board'
+import { toKoreanDate } from '../util/korean-date'
 
 const StyledContent = styled.a`
     border: 1px solid var(--background-secondary-rgb);
@@ -15,11 +15,11 @@ const StyledContent = styled.a`
 
 export default function BoardList({ boardList }: { boardList: Board[] }){
     return (
-        <div className="grid gap-y-2 mt-10">
+        <div className='grid gap-y-2 mt-10'>
             {boardList?.map((board, index) => 
                 <StyledContent key={index} href={`/board/${board.id}`}>
                     <h1>{board.title}</h1>
-                    <h1 className="ml-auto">{`${toKoreanDate(board.createdAt)}`}</h1>
+                    <h1 className='ml-auto'>{`${toKoreanDate(board.createdAt)}`}</h1>
                 </StyledContent>
             )}
         </div>

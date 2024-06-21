@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import Link from "next/link";
-import styled from "styled-components";
-import Logo from "./icons/Logo";
+import Link from 'next/link';
+import styled from 'styled-components';
+import Logo from './icons/Logo';
 
 const StyledHeader = styled.header`
     display: flex;
@@ -31,10 +31,10 @@ const Menu = styled.span`
 export default function Header(){
     return (
         <StyledHeader>
-            <Link href={"/"}><Logo width={50} height={50} /></Link>
+            <Link href={'/'}><Logo width={50} height={50} /></Link>
             <Menu>
-                <Link href={"/about"}>소개</Link>
-                <Link href={"/board"}>게시판</Link>
+                <Link href={'/about'}>소개</Link>
+                <Link href={'/board'}>게시판</Link>
             </Menu>
         </StyledHeader>
     )

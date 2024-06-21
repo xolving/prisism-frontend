@@ -1,5 +1,5 @@
-import dayjs from "dayjs"
+import dayjs from 'dayjs'
 
 export const toKoreanDate = (date: string) => {
-    return dayjs(date).format("YYYY년 MM월 DD일")
+    return dayjs(date).format('YYYY년 MM월 DD일')
 }

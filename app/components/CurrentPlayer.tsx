@@ -22,7 +22,7 @@ export default function CurrentPlayer() {
   const { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_HTTP_TYPE}://${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/room/player`,
     fetcher,
-    { refreshInterval: 5000 }
+    { refreshInterval: 10000 }
   );
 
   return (

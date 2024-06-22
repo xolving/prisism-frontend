@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { toast } from 'react-toastify'
 import CurrentPlayer from './components/CurrentPlayer'
 import Button from './components/form/ChatInput'
 import * as R from './styles/Random'
@@ -25,8 +26,8 @@ export default function Page() {
 
         if (data.status !== undefined && data.status !== null) {
           setChatHistory((prevHistory) => [...prevHistory, { message: data.status, sender: '📣' }])
-        } else if (data.message !== undefined && data.message !== null) {
-          setChatHistory((prevHistory) => [...prevHistory, { message: data.message, sender: '상대방' }])
+        } else {
+          setChatHistory((prevHistory) => [...prevHistory, { message: data.message, sender: data.sender }])
         }
       }
 
@@ -44,10 +45,9 @@ export default function Page() {
 
   const handleSendMessage = (message: string) => {
     if (message.length < 50) {
-      setChatHistory((prevHistory) => [...prevHistory, { message: message, sender: '나' }])
       socket?.send(JSON.stringify({ message: message }))
     } else {
-      setChatHistory((prevHistory) => [...prevHistory, { message: '50자 이하로 작성해주세요.', sender: '📣' }])
+      toast.info('50자 이하로 작성해주세요.')
     }
   }
 

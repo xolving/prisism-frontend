@@ -26,7 +26,7 @@ export default function Page() {
 
         if (data.status !== undefined && data.status !== null) {
           setChatHistory((prevHistory) => [...prevHistory, { message: data.status, sender: '📣' }])
-        } else {
+        } else if (data.message !== undefined && data.message !== null) {
           setChatHistory((prevHistory) => [...prevHistory, { message: data.message, sender: data.sender }])
         }
       }

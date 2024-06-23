@@ -24,15 +24,17 @@ export default function Page() {
       const handleIncomingMessage = (ev: MessageEvent<any>) => {
         const data = JSON.parse(ev.data)
 
-        if (data.status !== undefined && data.status !== null) {
-          setChatHistory((prevHistory) => [...prevHistory, { message: data.status, sender: '📣' }])
-        } else if (data.message !== undefined && data.message !== null) {
-          setChatHistory((prevHistory) => [...prevHistory, { message: data.message, sender: data.sender }])
+        if (data.type == 'status') {
+          setChatHistory((prevHistory) => [...prevHistory, { message: data.content, sender: '📣' }])
+        } else if (data.type == 'message') {
+          setChatHistory((prevHistory) => [...prevHistory, { message: data.content, sender: data.sender }])
         }
       }
 
       setInterval(() => {
-        socket.send(JSON.stringify({ ping: 'ping' }))
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.send(JSON.stringify({ type: 'ping', content: 'ping' }))
+        }
       }, 10000)
 
       socket.addEventListener('message', handleIncomingMessage)
@@ -45,7 +47,7 @@ export default function Page() {
 
   const handleSendMessage = (message: string) => {
     if (message.length < 50) {
-      socket?.send(JSON.stringify({ message: message }))
+      socket?.send(JSON.stringify({ type: 'message', content: message }))
     } else {
       toast.info('50자 이하로 작성해주세요.')
     }

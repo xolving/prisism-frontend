@@ -1,9 +1,6 @@
 'use client'
 
 import Hr from '@/app/components/Hr'
-import SubTitle from '@/app/components/SubTitle'
-import Title from '@/app/components/Title'
-import { ContentLayout } from '@/app/styles/Layout'
 import { toKoreanDate } from '@/app/util/korean-date'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -25,11 +22,11 @@ export default function Page({ params }: { params: { slug: string } }) {
   })
 
   return (
-    <ContentLayout>
+    <main>
       <h1 className="text-3xl">{board?.title}</h1>
       <h2 className="">{toKoreanDate(board?.createdAt)}</h2>
       <Hr />
       <Textarea>{board?.content.replace(/<br\s*\/?>/gim, '\n')}</Textarea>
-    </ContentLayout>
+    </main>
   )
 }

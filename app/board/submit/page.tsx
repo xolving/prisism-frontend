@@ -1,6 +1,5 @@
 'use client'
 
-import { Main } from '@/app/styles/Layout'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
@@ -28,7 +27,7 @@ export default function Page() {
   }
 
   return (
-    <Main>
+    <main>
       <form className="w-full h-5/6">
         <UploadButton type="submit" formAction={onSubmit}>
           업로드하기
@@ -36,6 +35,6 @@ export default function Page() {
         <TitleInput placeholder="제목을 입력해주세요." type="text" name="title" onKeyDown={onPress}></TitleInput>
         <ContentInput placeholder="내용을 입력해주세요." name="content" wrap="hard"></ContentInput>
       </form>
-    </Main>
+    </main>
   )
 }

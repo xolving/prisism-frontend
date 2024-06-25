@@ -6,8 +6,7 @@ import Logo from './icons/Logo'
 
 const StyledHeader = styled.header`
   display: flex;
-  padding-left: 25px;
-  padding: 20px 50px 20px 50px;
+  padding: 15px 50px 15px 50px;
   border-bottom: 1px solid #2f2f2f;
 
   @media screen and (max-width: 768px) {

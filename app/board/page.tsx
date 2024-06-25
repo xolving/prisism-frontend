@@ -4,7 +4,6 @@ import axios from 'axios'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import BoardList from '../components/BoardList'
-import * as L from '../styles/Layout'
 import { Board } from '../types/Board'
 
 export default function Page() {
@@ -22,11 +21,11 @@ export default function Page() {
   }, [])
 
   return (
-    <L.Main>
+    <main>
       <Link href={'/board/submit'} className="rounded-full border py-2 px-5 border-slate-500 place-items-end">
         작성하기
       </Link>
       <BoardList boardList={boardList} />
-    </L.Main>
+    </main>
   )
 }

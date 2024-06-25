@@ -17,6 +17,17 @@ body {
   }
 }
 
+.layout {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 0;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

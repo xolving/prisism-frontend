@@ -84,30 +84,28 @@ export default function Page() {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="flex h-[90vh]">
-        <R.ChatMain>
-          <R.ChatTabOrigin>
-            <CurrentPlayer />
-            <R.ChatTab>
-              {chatHistory.map((chat, index) => (
-                <div key={index} className="block mb-3">
-                  <R.Chat>
-                    <p className="text-sm text-slate-200">{chat.sender}</p>
-                    <p>{chat.message}</p>
-                  </R.Chat>
-                </div>
-              ))}
-              <div ref={chatEndRef} />
-            </R.ChatTab>
-          </R.ChatTabOrigin>
-          <Button
-            onSendMessage={handleSendMessage}
-            onStartChat={handleChatStart}
-            isChatting={isChatting}
-            onQuit={handleQuit}
-          />
-        </R.ChatMain>
-      </div>
+      <R.ChatMain>
+        <R.ChatTabOrigin>
+          <CurrentPlayer />
+          <R.ChatTab>
+            {chatHistory.map((chat, index) => (
+              <div key={index} className="block mb-3">
+                <R.Chat>
+                  <p className="text-sm text-slate-200">{chat.sender}</p>
+                  <p>{chat.message}</p>
+                </R.Chat>
+              </div>
+            ))}
+            <div ref={chatEndRef} />
+          </R.ChatTab>
+        </R.ChatTabOrigin>
+        <Button
+          onSendMessage={handleSendMessage}
+          onStartChat={handleChatStart}
+          isChatting={isChatting}
+          onQuit={handleQuit}
+        />
+      </R.ChatMain>
     </div>
   )
 }

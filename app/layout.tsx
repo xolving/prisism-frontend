@@ -37,7 +37,7 @@ export default function RootLayout({
           theme="dark"
         />
         <Header />
-        {children}
+        <div className="layout">{children}</div>
       </body>
       <GoogleAdsense />
     </html>

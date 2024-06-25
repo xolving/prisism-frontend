@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Main = styled.div`
+export const Layout = styled.div`
   width: 70vw;
   height: 70vh;
   margin: auto;

@@ -26,8 +26,8 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <ContentLayout>
-      <Title>{board?.title}</Title>
-      <SubTitle>{toKoreanDate(board?.createdAt)}</SubTitle>
+      <h1 className="text-3xl">{board?.title}</h1>
+      <h2 className="">{toKoreanDate(board?.createdAt)}</h2>
       <Hr />
       <Textarea>{board?.content.replace(/<br\s*\/?>/gim, '\n')}</Textarea>
     </ContentLayout>

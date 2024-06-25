@@ -33,7 +33,7 @@ const LoginButton = styled.div`
   margin-left: auto;
   border-radius: 20px;
   border: 1px solid #434343;
-  padding: 8px 20px;
+  padding: 0 20px;
 `
 
 export default function Header() {

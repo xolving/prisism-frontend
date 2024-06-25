@@ -34,6 +34,7 @@ const LoginButton = styled.div`
   border-radius: 20px;
   border: 1px solid #434343;
   padding: 0 20px;
+  font-size: 15px;
 `
 
 export default function Header() {

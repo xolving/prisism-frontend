@@ -1,3 +1,4 @@
+import { disassemble } from 'hangul-js'
 import { useState } from 'react'
 import styled from 'styled-components'
 import QuitIcon from '../icons/QuitIcon'
@@ -32,19 +33,19 @@ const StyledQuitButton = styled.button`
 `
 
 interface Props {
-  onSendMessage: (input: string) => void
+  onSendMessage: ({ content, type }: { content: string; type: string }) => void
   onQuit: () => void
   isChatting: boolean
   onStartChat: () => void
 }
 
-const Button = ({ onSendMessage, isChatting, onStartChat, onQuit }: Props) => {
+export default function Button({ onSendMessage, isChatting, onStartChat, onQuit }: Props) {
   const [value, setValue] = useState('')
   const [isComposing, setComposing] = useState(false)
 
   const sendToggle = () => {
     if (value.trim() !== '') {
-      onSendMessage(value)
+      onSendMessage({ content: value, type: 'MESSAGE' })
       setValue('')
     }
   }
@@ -52,6 +53,10 @@ const Button = ({ onSendMessage, isChatting, onStartChat, onQuit }: Props) => {
   const handleKeyPress = (e: any) => {
     if (e.key === 'Enter' && !isComposing) {
       sendToggle()
+    }
+
+    if ((disassemble(value).length + 1) % 12 == 0 || disassemble(value).length == 1) {
+      onSendMessage({ content: '', type: 'WRITE' })
     }
   }
 
@@ -81,5 +86,3 @@ const Button = ({ onSendMessage, isChatting, onStartChat, onQuit }: Props) => {
     <StartButton onClick={onStartChat} />
   )
 }
-
-export default Button

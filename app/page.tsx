@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
+import ChatStatus from './components/ChatStatus'
 import CurrentPlayer from './components/CurrentPlayer'
 import Button from './components/form/ChatInput'
 import * as R from './styles/Random'
@@ -12,6 +13,7 @@ export default function Page() {
   const [isChatting, setChatting] = useState(false)
   const [socket, setSocket] = useState<WebSocket>()
   const chatEndRef = useRef<HTMLDivElement>(null)
+  const [isWriting, setWriting] = useState(false)
 
   useEffect(() => {
     if (chatEndRef.current) {
@@ -24,16 +26,32 @@ export default function Page() {
       const handleIncomingMessage = (ev: MessageEvent<any>) => {
         const data = JSON.parse(ev.data)
 
-        if (data.type == 'status') {
-          setChatHistory((prevHistory) => [...prevHistory, { message: data.content, sender: '📣' }])
-        } else if (data.type == 'message') {
-          setChatHistory((prevHistory) => [...prevHistory, { message: data.content, sender: data.sender }])
+        switch (data.type) {
+          case 'JOIN':
+            setChatHistory((prevHistory) => [...prevHistory, { message: '상대방이 들어왔습니다.', sender: '📣' }])
+            break
+          case 'EXIT':
+            setChatHistory((prevHistory) => [...prevHistory, { message: '채팅이 종료되었습니다.', sender: '📣' }])
+            break
+          case 'WAIT':
+            setChatHistory((prevHistory) => [...prevHistory, { message: '상대방을 기다리고 있습니다.', sender: '📣' }])
+            break
+          case 'WRITE':
+            setWriting(true)
+            setTimeout(() => {
+              setWriting(false)
+            }, 4000)
+          case 'PING':
+            break
+          case 'MESSAGE':
+            setChatHistory((prevHistory) => [...prevHistory, { message: data.content, sender: data.sender }])
+            break
         }
       }
 
       setInterval(() => {
         if (socket.readyState === WebSocket.OPEN) {
-          socket.send(JSON.stringify({ type: 'ping', content: 'ping' }))
+          socket.send(JSON.stringify({ type: 'PING' }))
         }
       }, 10000)
 
@@ -45,9 +63,9 @@ export default function Page() {
     }
   }, [socket])
 
-  const handleSendMessage = (message: string) => {
-    if (message.length < 50) {
-      socket?.send(JSON.stringify({ type: 'message', content: message }))
+  const handleSendMessage = ({ type, content }: { type: string; content: string }) => {
+    if (content.length < 50) {
+      socket?.send(JSON.stringify({ type: type, content: content }))
     } else {
       toast.info('50자 이하로 작성해주세요.')
     }
@@ -96,8 +114,9 @@ export default function Page() {
                 </R.Chat>
               </div>
             ))}
-            <div ref={chatEndRef} />
+            <ChatStatus isVisible={isWriting} />
           </R.ChatTab>
+          <div ref={chatEndRef} />
         </R.ChatTabOrigin>
         <Button
           onSendMessage={handleSendMessage}

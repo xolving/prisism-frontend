@@ -13,7 +13,7 @@ const StyledPlayers = styled.div`
   column-gap: 12px;
 
   @media screen and (max-width: 768px) {
-    display: none;
+    position: fixed;
   }
 `
 

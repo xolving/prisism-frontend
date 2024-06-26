@@ -115,8 +115,8 @@ export default function Page() {
               </div>
             ))}
             <ChatStatus isVisible={isWriting} />
+            <div ref={chatEndRef} />
           </R.ChatTab>
-          <div ref={chatEndRef} />
         </R.ChatTabOrigin>
         <Button
           onSendMessage={handleSendMessage}

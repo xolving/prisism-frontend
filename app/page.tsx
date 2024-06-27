@@ -104,7 +104,10 @@ export default function Page() {
     <div className="flex items-center justify-center">
       <R.ChatMain>
         <R.ChatTabOrigin>
-          <CurrentPlayer />
+          <div className="flex items-center">
+            <CurrentPlayer />
+            <p className="text-slate-500 ml-auto mr-3">프리시즘은 채팅 내역을 저장하지 않습니다.</p>
+          </div>
           <R.ChatTab>
             {chatHistory.map((chat, index) => (
               <div key={index} className="block mb-3">

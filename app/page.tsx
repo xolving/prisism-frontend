@@ -49,12 +49,6 @@ export default function Page() {
         }
       }
 
-      setInterval(() => {
-        if (socket.readyState === WebSocket.OPEN) {
-          socket.send(JSON.stringify({ type: 'PING' }))
-        }
-      }, 10000)
-
       socket.addEventListener('message', handleIncomingMessage)
 
       return () => {
@@ -104,10 +98,7 @@ export default function Page() {
     <div className="flex items-center justify-center">
       <R.ChatMain>
         <R.ChatTabOrigin>
-          <div className="flex items-center">
-            <CurrentPlayer />
-            <p className="text-slate-500 ml-auto mr-3">프리시즘은 채팅 내역을 저장하지 않습니다.</p>
-          </div>
+          <CurrentPlayer />
           <R.ChatTab>
             {chatHistory.map((chat, index) => (
               <div key={index} className="block mb-3">

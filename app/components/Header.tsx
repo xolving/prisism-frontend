@@ -2,11 +2,10 @@
 
 import Link from 'next/link'
 import styled from 'styled-components'
-import Logo from './icons/Logo'
 
 const StyledHeader = styled.header`
   display: flex;
-  padding: 15px 50px 15px 50px;
+  padding: 15px 50px;
   border-bottom: 1px solid #2f2f2f;
 
   @media screen and (max-width: 768px) {
@@ -19,7 +18,6 @@ const Menu = styled.span`
   column-gap: 2rem;
   justify-content: center;
   align-items: center;
-  margin-left: 3rem;
   margin-right: 3rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -33,17 +31,15 @@ const LoginButton = styled.div`
   margin-left: auto;
   border-radius: 20px;
   border: 1px solid #434343;
-  padding: 0 20px;
+  padding: 8px 20px;
   font-size: 15px;
 `
 
 export default function Header() {
   return (
     <StyledHeader>
-      <Link href={'/'}>
-        <Logo width={40} height={40} />
-      </Link>
       <Menu>
+        <Link href={'/'}>랜덤채팅</Link>
         <Link href={'/board'}>게시판</Link>
       </Menu>
       <LoginButton>

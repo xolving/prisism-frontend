@@ -5,7 +5,10 @@
 :root {
   --foreground-rgb: #e5e5e5;
   --background-rgb: #141414;
-  --background-secondary-rgb: #313131;
+  --border-rgb: #313131;
+  --primary-rgb: #41f9a1;
+
+  font-size: 15px;
 }
 
 body {

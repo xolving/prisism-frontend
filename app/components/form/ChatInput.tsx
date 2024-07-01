@@ -1,7 +1,7 @@
+import { Icon } from '@iconify/react'
 import { disassemble } from 'hangul-js'
 import { useState } from 'react'
 import styled from 'styled-components'
-import QuitIcon from '../icons/QuitIcon'
 import StartButton from './StartButton'
 
 const Bottom = styled.div`
@@ -55,7 +55,7 @@ export default function Button({ onSendMessage, isChatting, onStartChat, onQuit 
       sendToggle()
     }
 
-    if ((disassemble(value).length + 1) % 12 == 0 || disassemble(value).length == 1) {
+    if ((disassemble(value).length + 1) % 12 === 0 || disassemble(value).length === 1) {
       onSendMessage({ content: '', type: 'WRITE' })
     }
   }
@@ -79,7 +79,7 @@ export default function Button({ onSendMessage, isChatting, onStartChat, onQuit 
         placeholder="채팅을 입력해주세요."
       />
       <StyledQuitButton onClick={onQuit}>
-        <QuitIcon width={22} height={22} />
+        <Icon icon="material-symbols:door-open-outline-rounded" width={24} />
       </StyledQuitButton>
     </Bottom>
   ) : (

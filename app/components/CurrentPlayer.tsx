@@ -1,16 +1,17 @@
 'use client'
 
+import { Icon } from '@iconify/react'
 import axios from 'axios'
 import { Suspense } from 'react'
 import styled from 'styled-components'
 import useSWR from 'swr'
-import UserLogo from './icons/UserLogo'
 
 const StyledPlayers = styled.div`
   padding: 10px;
   text-align: center;
   display: flex;
   column-gap: 12px;
+  align-items: center;
 
   @media screen and (max-width: 768px) {
     position: fixed;
@@ -27,7 +28,7 @@ export default function CurrentPlayer() {
 
   return (
     <StyledPlayers>
-      <UserLogo width={24} height={24} />
+      <Icon icon="material-symbols:user-attributes" width={30} />
       <Suspense>{data}</Suspense>
     </StyledPlayers>
   )

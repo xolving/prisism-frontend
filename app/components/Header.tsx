@@ -1,13 +1,13 @@
 'use client'
 
+import { Icon } from '@iconify/react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import { Fa6BrandsDiscord, Fa6BrandsGithub } from './icons/Logo'
 
 const StyledHeader = styled.header`
   display: flex;
   padding: 15px 50px;
-  border-bottom: 1px solid #2f2f2f;
+  border-bottom: 1px solid var(--border-rgb);
 
   @media screen and (max-width: 768px) {
     display: none;
@@ -62,16 +62,22 @@ export default function Header() {
   return (
     <StyledHeader>
       <Menu>
-        <Link href={'/'}>랜덤채팅</Link>
-        <Link href={'/board'}>게시판</Link>
+        <Link href={'/'} className="flex items-center">
+          <Icon icon="material-symbols:merge-type-rounded" width={28} />
+          <p>랜덤채팅</p>
+        </Link>
+        <Link href={'/board'} className="flex items-center gap-x-1">
+          <Icon icon="material-symbols:note-stack-outline" width={22} />
+          <p>게시판</p>
+        </Link>
       </Menu>
       <RightContent>
         <IconList>
           <Link href={process.env.NEXT_PUBLIC_DISCORD_LINK ?? ''}>
-            <Fa6BrandsDiscord />
+            <Icon icon="ic:baseline-discord" width={22} />
           </Link>
           <Link href={process.env.NEXT_PUBLIC_GITHUB_LINK ?? ''}>
-            <Fa6BrandsGithub />
+            <Icon icon="fa6-brands:github" width={18} />
           </Link>
         </IconList>
         <LoginButton>

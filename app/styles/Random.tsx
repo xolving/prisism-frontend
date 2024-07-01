@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const ChatMain = styled.div`
   width: 58vw;
@@ -16,7 +16,7 @@ export const ChatMain = styled.div`
     border-radius: 0;
     text-align: left;
   }
-`;
+`
 
 export const ChatTab = styled.div`
   margin: 10px;
@@ -32,14 +32,14 @@ export const ChatTab = styled.div`
     height: 90%;
     padding-bottom: 3vh;
   }
-`;
+`
 
 export const ChatTabOrigin = styled.div`
   margin: 10px;
   height: 60vh;
   background-color: #262626;
   text-align: left;
-  border: 1px solid var(--background-secondary-rgb);
+  border: 1px solid var(--border-rgb);
   border-radius: 10px;
   margin-top: 1vh;
   padding: 10px;
@@ -50,7 +50,7 @@ export const ChatTabOrigin = styled.div`
     height: 100%;
     border: none;
   }
-`;
+`
 
 export const Chat = styled.div`
   padding: 8px 12px;

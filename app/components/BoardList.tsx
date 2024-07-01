@@ -5,21 +5,18 @@ import { toKoreanDate } from '../util/korean-date'
 const StyledContent = styled.a`
   border: 1px solid var(--background-secondary-rgb);
   border-radius: 15px;
-  padding: 10px;
-  width: 100vh;
-  padding-left: 35px;
-  padding-right: 20px;
+  height: 150px;
+  padding: 20px;
   background-color: #262626;
-  display: flex;
 `
 
 export default function BoardList({ boardList }: { boardList: Board[] }) {
   return (
-    <div className="grid gap-y-2 mt-10">
+    <div className="grid mt-10 grid-cols-3 gap-4">
       {boardList?.map((board, index) => (
         <StyledContent key={index} href={`/board/${board.id}`}>
-          <h1>{board.title}</h1>
-          <h1 className="ml-auto">{`${toKoreanDate(board.createdAt)}`}</h1>
+          <p className="ml-auto">{`${toKoreanDate(board.createdAt)}`}</p>
+          <p className="text-lg">{board.title}</p>
         </StyledContent>
       ))}
     </div>

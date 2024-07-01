@@ -22,9 +22,9 @@ export default function Page({ params }: { params: { slug: string } }) {
   })
 
   return (
-    <main>
-      <h1 className="text-3xl">{board?.title}</h1>
+    <main className="w-[70%]">
       <h2 className="">{toKoreanDate(board?.createdAt)}</h2>
+      <h1 className="text-3xl font-medium">{board?.title}</h1>
       <Hr />
       <Textarea>{board?.content.replace(/<br\s*\/?>/gim, '\n')}</Textarea>
     </main>

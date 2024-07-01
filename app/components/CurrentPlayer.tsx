@@ -29,7 +29,7 @@ export default function CurrentPlayer() {
   return (
     <StyledPlayers>
       <Icon icon="material-symbols:user-attributes" width={30} />
-      <Suspense>{data}</Suspense>
+      <Suspense>{data ?? 0}</Suspense>
     </StyledPlayers>
   )
 }

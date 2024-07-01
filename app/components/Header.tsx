@@ -37,19 +37,6 @@ const LoginButton = styled.div`
   height: 100%;
 `
 
-const IconList = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  border-radius: 20px;
-  border: 1px solid #434343;
-  padding: 8px 20px;
-  font-size: 15px;
-  height: 100%;
-  column-gap: 15px;
-`
-
 const RightContent = styled.div`
   display: flex;
   justify-content: center;
@@ -80,14 +67,6 @@ export default function Header() {
         </Link>
       </Menu>
       <RightContent>
-        <IconList>
-          <Link href={process.env.NEXT_PUBLIC_DISCORD_LINK ?? ''}>
-            <Icon icon="ic:baseline-discord" width={22} />
-          </Link>
-          <Link href={process.env.NEXT_PUBLIC_GITHUB_LINK ?? ''}>
-            <Icon icon="fa6-brands:github" width={18} />
-          </Link>
-        </IconList>
         <Link href={'/auth'}>
           <LoginButton>
             <p>로그인</p>

@@ -62,13 +62,21 @@ export default function Header() {
   return (
     <StyledHeader>
       <Menu>
-        <Link href={'/'} className="flex items-center">
-          <Icon icon="material-symbols:merge-type-rounded" width={28} />
+        <Link href={'/'} className="flex items-center gap-x-2">
+          <Icon icon="material-symbols:family-link-outline-rounded" width={22} />
           <p>랜덤채팅</p>
         </Link>
-        <Link href={'/board'} className="flex items-center gap-x-1">
+        <Link href={'/board'} className="flex items-center gap-x-2">
           <Icon icon="material-symbols:note-stack-outline" width={22} />
           <p>게시판</p>
+        </Link>
+        <Link href={'/novel'} className="flex items-center gap-x-2">
+          <Icon icon="material-symbols:book-5-outline-rounded" width={22} />
+          <p>만화</p>
+        </Link>
+        <Link href={'/support'} className="flex items-center gap-x-2">
+          <Icon icon="lucide:coins" width={22} />
+          <p>서포트</p>
         </Link>
       </Menu>
       <RightContent>
@@ -80,11 +88,13 @@ export default function Header() {
             <Icon icon="fa6-brands:github" width={18} />
           </Link>
         </IconList>
-        <LoginButton>
-          <p>로그인</p>
-          <p>・</p>
-          <p>회원가입</p>
-        </LoginButton>
+        <Link href={'/auth'}>
+          <LoginButton>
+            <p>로그인</p>
+            <p>・</p>
+            <p>회원가입</p>
+          </LoginButton>
+        </Link>
       </RightContent>
     </StyledHeader>
   )

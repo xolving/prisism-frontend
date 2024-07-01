@@ -19,8 +19,10 @@ export default function BoardList({ boardList }: { boardList: Board[] }) {
         <StyledContent key={index} href={`/board/${board.id}`}>
           <Image src={'/example.png'} alt="example" width={200} height={200} className="rounded-xl" />
           <div className="p-3">
-            <p className="ml-auto text-lg">{`${toKoreanDate(board.createdAt)}`}</p>
-            <p className="text-lg">{board.title}</p>
+            <div>
+              <p className="ml-auto">{`${toKoreanDate(board.createdAt)}`}</p>
+              <p>{board.title}</p>
+            </div>
           </div>
         </StyledContent>
       ))}

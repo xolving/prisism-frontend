@@ -1,3 +1,4 @@
+import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import styled from 'styled-components'
 import { Board } from '../types/Board'
@@ -18,10 +19,19 @@ export default function BoardList({ boardList }: { boardList: Board[] }) {
       {boardList?.map((board, index) => (
         <StyledContent key={index} href={`/board/${board.id}`}>
           <Image src={'/example.png'} alt="example" width={200} height={200} className="rounded-xl" />
-          <div className="p-3">
+          <div className="grid p-3 w-full h-full">
             <div>
-              <p className="ml-auto">{`${toKoreanDate(board.createdAt)}`}</p>
-              <p>{board.title}</p>
+              <p className="text-xl">{board.title}</p>
+            </div>
+            <div className="flex mt-auto justify-start w-full">
+              <div>
+                <p>guest23582818</p>
+                <p className="ml-auto">{`${toKoreanDate(board.createdAt)}`}</p>
+              </div>
+              <div className="ml-auto mt-auto flex items-center gap-x-2">
+                <p>26</p>
+                <Icon icon="material-symbols:favorite-outline-rounded" width={22} />
+              </div>
             </div>
           </div>
         </StyledContent>

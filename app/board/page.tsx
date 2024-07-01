@@ -21,7 +21,7 @@ export default function Page() {
   }, [])
 
   return (
-    <main>
+    <main className="mx-10">
       <Link href={'/board/submit'} className="rounded-full border py-2 px-5 border-slate-500 place-items-end">
         작성하기
       </Link>

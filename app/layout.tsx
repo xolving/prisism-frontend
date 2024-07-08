@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/ReactToastify.css'
 import GoogleAdsense from './components/GoogleAdsense'
 import Header from './components/Header'
-import Notice from './components/Notice'
 import './globals.css'
 
 const inter = localFont({
@@ -37,7 +36,6 @@ export default function RootLayout({
           pauseOnHover
           theme="dark"
         />
-        <Notice />
         <Header />
         <div className="layout">{children}</div>
       </body>

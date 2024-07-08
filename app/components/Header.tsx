@@ -57,14 +57,6 @@ export default function Header() {
           <Icon icon="material-symbols:note-stack-outline" width={22} />
           <p>게시판</p>
         </Link>
-        <Link href={'/novel'} className="flex items-center gap-x-2">
-          <Icon icon="material-symbols:book-5-outline-rounded" width={22} />
-          <p>만화</p>
-        </Link>
-        <Link href={'/support'} className="flex items-center gap-x-2">
-          <Icon icon="lucide:coins" width={22} />
-          <p>서포트</p>
-        </Link>
       </Menu>
       <RightContent>
         <Link href={'/auth'}>
